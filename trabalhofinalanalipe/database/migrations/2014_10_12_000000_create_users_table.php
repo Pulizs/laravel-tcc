@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('celular');
             $table->string('role');
             $table->string('email')->unique();
+            $table->bigInteger("postagem_id")->unsigned();
+            $table->bigInteger("comentario_id")->unsigned();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

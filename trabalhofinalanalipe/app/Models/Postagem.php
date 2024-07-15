@@ -14,6 +14,11 @@ class Postagem extends Model
         "titulo",
         "conteudo",
         "imagem",
-        "curtidas"
+        "curtidas",
     ];
+
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
+
 }

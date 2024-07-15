@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comentario', function (Blueprint $table) {
             $table->id();
             $table->string("conteudo");
-            $table->longblob("imagem");
+            // $table->longblob("imagem");
             $table->string("curtidas");
             $table->bigInteger("user_id")->unsigned();
             $table->bigInteger("postagem_id")->unsigned();

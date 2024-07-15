@@ -53,13 +53,13 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
     
-    public function endereco()
+    public function postagens()
     {
-        return $this->hasOne(Endereco::class);
+        return $this->hasMany(Postagem::class);
     }
     
-    public function solicitacoes(){
-        return $this->hasMany(Solicitacao::class);
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
     }
     
     
