@@ -39,7 +39,7 @@
 </head>
 <body class="text-center">
 
-@auth
+	@auth
 	   @include('layouts.partials.navbarlogged')
 	@endauth
    
@@ -56,4 +56,7 @@
    
  
 </body>
+<footer>
+	@include('layouts.partials.footer')
+</footer>
 </html>
