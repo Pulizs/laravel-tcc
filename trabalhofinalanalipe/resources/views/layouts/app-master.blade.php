@@ -13,7 +13,7 @@
         crossorigin="anonymous"></script>
 	<meta name="generator" content="ifpr 1.0">
 	<link rel="icon" href="{!! url('assets/images/logo mc.png') !!}">
-	<title>Super WEB APP</title>
+	<title>MathScience Space</title>
  
 	<link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
    
