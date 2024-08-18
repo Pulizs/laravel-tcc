@@ -21,7 +21,7 @@ class User extends Authenticatable
     
     protected $fillable = [
         'nome',
-        'username',
+        'nickname',
         'email',
         'password',
         'celular',
@@ -53,14 +53,14 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
     
-    public function postagens()
-    {
-        return $this->hasMany(Postagem::class);
-    }
+    // public function postagens()
+    // {
+    //     return $this->hasMany(Postagem::class);
+    // }
     
-    public function comentarios(){
-        return $this->hasMany(Comentario::class);
-    }
+    // public function comentarios(){
+    //     return $this->hasMany(Comentario::class);
+    // }
     
     
 }

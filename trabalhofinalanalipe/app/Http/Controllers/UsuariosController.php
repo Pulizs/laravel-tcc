@@ -41,25 +41,27 @@ class UsuariosController extends Controller
     {
         $storeData = $request->validate([
             'nome' => 'required|max:255',
+            'nickname' => 'required|max:255',
             'email' => 'required|max:255',
+            'celular' => 'required|max:255',
             'role' => 'required|max:255',
             'password' => 'required|max:255',
         ]);
         
         $dados = array_merge($storeData, ["role" => "ROLE_USER"]);
         
-        $endereco = new Endereco();
-        $endereco->logradouro = $request['logradouro'];
-        $endereco->cep = $request['cep'];
-        $endereco->cidade = $request['cidade'];
-        $endereco->numero = $request['numero'];
-        $endereco->complemento = $request['complemento'];
+        // $endereco = new Endereco();
+        // $endereco->logradouro = $request['logradouro'];
+        // $endereco->cep = $request['cep'];
+        // $endereco->cidade = $request['cidade'];
+        // $endereco->numero = $request['numero'];
+        // $endereco->complemento = $request['complemento'];
         
         //Insere o usuário no BD e retorna o obj
         //com o id criado
         $user = User::create($dados);
         //salva o endreço relacionando com o usuário que foi criado
-        $user->endereco()->save($endereco);
+        // $user->endereco()->save($endereco);
         return redirect()->route('usuarios.index')->withSuccess(__('Usuario criado com sucesso.'));
         
     }
@@ -100,16 +102,19 @@ class UsuariosController extends Controller
     {
         $storeData = $request->validate([
             'nome' => 'required|max:255',
+            'nickname' => 'required|max:255',
             'email' => 'required|max:255',
+            'celular' => 'required|max:255',
             'role' => 'required|max:255',
+            'password' => 'required|max:255',
         ]);
         
-        $endereco = User::find($id)->endereco;
-        $endereco->logradouro = $request["logradouro"];
-        $endereco->cep = $request["cep"];
-        $endereco->cidade = $request["cidade"];
-        $endereco->numero = $request["numero"];
-        $endereco->complemento = $request["complemento"];
+        // $endereco = User::find($id)->endereco;
+        // $endereco->logradouro = $request["logradouro"];
+        // $endereco->cep = $request["cep"];
+        // $endereco->cidade = $request["cidade"];
+        // $endereco->numero = $request["numero"];
+        // $endereco->complemento = $request["complemento"];
         User::whereId($id)->update($storeData);
         return redirect()->route('usuarios.index')->withSuccess(__('Usuario atualizado com sucesso.'));
         

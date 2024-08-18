@@ -17,7 +17,7 @@
  
 	<link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
    
-	<style>
+	<!-- <style>
   	.bd-placeholder-img {
     	font-size: 1.125rem;
     	text-anchor: middle;
@@ -34,8 +34,8 @@
 	</style>
  
    
-	<!-- Custom styles for this template -->
-	<link href="signin.css" rel="stylesheet">
+	
+	<link href="signin.css" rel="stylesheet"> -->
 </head>
 <body class="text-center">
 
