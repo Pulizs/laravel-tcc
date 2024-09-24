@@ -91,6 +91,14 @@ class UsuariosController extends Controller
         
     }
 
+    public function postagens($id)
+    {
+        $postagens = Postagem::where("user_id", $id)->orderBy("id")->get();
+        
+        return view("postagens.index", compact("postagens"));
+        
+    }
+
     /**
      * Update the specified resource in storage.
      *

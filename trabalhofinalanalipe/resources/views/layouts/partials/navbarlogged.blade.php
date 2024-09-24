@@ -51,7 +51,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="vocesabia.html">Postagens <svg
+                                <a class="nav-link" aria-current="page" href="{{ route('postagens.index') }}">Postagens <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-stars" viewBox="0 0 16 16">
                                         <path
@@ -137,7 +137,7 @@
                             </li>
 							@auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('usuarios.index') }}">{{auth()->user()->nome}} <svg xmlns="http://www.w3.org/2000/svg"
+                                <a class="nav-link" href="{{ route('postagens.index') }}">{{auth()->user()->nome}} <svg xmlns="http://www.w3.org/2000/svg"
                                         width="16" height="16" fill="currentColor" class="bi bi-person-fill"
                                         viewBox="0 0 16 16">
                                         <path
