@@ -43,7 +43,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="vocesabia.html">Postagens <svg
+                                <a class="nav-link" aria-current="page" href="{{ route('postagens.index') }}">Postagens <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-stars" viewBox="0 0 16 16">
                                         <path
@@ -53,9 +53,8 @@
 
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Materiais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <a class="nav-link dropdown-toggle" href="{{ route('materiais.index') }}" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Materiais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
                                         <path
                                             d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
@@ -64,7 +63,7 @@
                                     </svg>
                                 </a>
                                 <ul class="dropdown-menu" style="background-color: #F2D5E5">
-                                    <li><a class="dropdown-item" href="eventos.html">Eventos <svg
+                                    <li><a class="dropdown-item" href="{{ route('eventos.index') }}">Eventos <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
                                                 <path
@@ -73,7 +72,7 @@
                                                     d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
                                             </svg></a></li>
 
-                                    <li><a class="dropdown-item" href="biblioteca.html">Literatura <svg
+                                    <li><a class="dropdown-item" href="{{ route('livros.index') }}">Literatura <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                                                 <path
@@ -95,7 +94,7 @@
                                                 <path
                                                     d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6M7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
                                             </svg></a></li>
-                                    <li><a class="dropdown-item" href="artigos.html">Artigos Científicos <svg
+                                    <li><a class="dropdown-item" href="{{ route('artigos.index') }}">Artigos Científicos <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
                                                 <path
@@ -107,7 +106,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-disabled="true" href="duvidas.html">Dúvidas <svg
+                                <a class="nav-link" aria-disabled="true" href="{{ route('contatos.index') }}">Dúvidas <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-patch-question" viewBox="0 0 16 16">
                                         <path
@@ -118,7 +117,7 @@
                                     </svg></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="configuracoes.html">Configurações <svg
+                                <a class="nav-link" href="{{ route('configuracoes.index') }}">Configurações <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-gear" viewBox="0 0 16 16">
                                         <path
