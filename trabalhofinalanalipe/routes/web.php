@@ -98,6 +98,7 @@ Route::group([
         Route::get("/disciplinas/pdf", "DisciplinaPDFController@index")->name("pdf.index");
         
         Route::get('/email/email{professor}', "MailController@index")->name("email.index");
+        
      
       
         /**
