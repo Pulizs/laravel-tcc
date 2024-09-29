@@ -70,10 +70,10 @@ Route::group([
         Route::get("/postagens", "PostagensController@index")->name("postagens.index");
         Route::get("/postagens/create", "PostagensController@create")->name("postagens.create");
         Route::post("/postagens/create", "PostagensController@store")->name("postagens.store");
-        Route::get('/postagens/{postagens}/show', 'PostagensController@show')->name('postagens.show');
-        Route::get('/postagens/{postagens}/edit', 'PostagensController@edit')->name('postagens.edit');
-        Route::patch('/postagens/{postagens}/update', 'PostagensController@update')->name('postagens.update');
-        Route::delete('/postagens/{postagens}/delete', 'PostagensController@destroy')->name('postagens.destroy');
+        Route::get('/postagens/{postagem}/show', 'PostagensController@show')->name('postagens.show');
+        Route::get('/postagens/{postagem}/edit', 'PostagensController@edit')->name('postagens.edit');
+        Route::patch('/postagens/{postagem}/update', 'PostagensController@update')->name('postagens.update');
+        Route::delete('/postagens/{postagem}/delete', 'PostagensController@destroy')->name('postagens.destroy');
 
         Route::get("/solicitacoes", "SolicitacoesController@index")->name("solicitacoes.index");
         Route::get("/solicitacoes/create", "SolicitacoesController@create")->name("solicitacoes.create");

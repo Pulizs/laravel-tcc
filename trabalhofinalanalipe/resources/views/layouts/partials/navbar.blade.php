@@ -53,7 +53,7 @@
 
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ route('materiais.index') }}" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">Materiais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
                                         <path
@@ -63,7 +63,7 @@
                                     </svg>
                                 </a>
                                 <ul class="dropdown-menu" style="background-color: #F2D5E5">
-                                    <li><a class="dropdown-item" href="{{ route('eventos.index') }}">Eventos <svg
+                                    <li><a class="dropdown-item" href="">Eventos <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
                                                 <path
@@ -72,29 +72,13 @@
                                                     d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
                                             </svg></a></li>
 
-                                    <li><a class="dropdown-item" href="{{ route('livros.index') }}">Literatura <svg
+                                    <li><a class="dropdown-item" href="">Literatura <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                                                 <path
                                                     d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
                                             </svg></a></li>
-                                    <li><a class="dropdown-item" href="podcast.html">Podcasts <svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-earbuds" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.4 4.4 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.55.55 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563s-.561.994-.292 1.969.836 1.675 1.266 1.563m3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.4 4.4 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948m.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563s.561.994.292 1.969-.836 1.675-1.266 1.563" />
-                                            </svg></a></li>
-                                    <li><a class="dropdown-item" href="videos.html">Vídeos <svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-camera-reels" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0M1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
-                                                <path
-                                                    d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm6 8.73V7.27l-3.5 1.555v4.35zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1" />
-                                                <path
-                                                    d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6M7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
-                                            </svg></a></li>
-                                    <li><a class="dropdown-item" href="{{ route('artigos.index') }}">Artigos Científicos <svg
+                                    <li><a class="dropdown-item" href="">Artigos Científicos <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
                                                 <path
@@ -106,7 +90,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-disabled="true" href="{{ route('contatos.index') }}">Dúvidas <svg
+                                <a class="nav-link" aria-disabled="true" href="">Dúvidas <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-patch-question" viewBox="0 0 16 16">
                                         <path
@@ -117,7 +101,7 @@
                                     </svg></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('configuracoes.index') }}">Configurações <svg
+                                <a class="nav-link" href="">Configurações <svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-gear" viewBox="0 0 16 16">
                                         <path

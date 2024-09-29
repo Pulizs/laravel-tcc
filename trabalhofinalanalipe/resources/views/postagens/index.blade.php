@@ -7,11 +7,10 @@
 <center>
 @foreach($postagens as $postagem)
 
-<div class="card" style="width: 40%;">
+            <div class="card" style="width: 40%;">
                 <div class="card-body">
                     <p class="card-text">{{ $postagem->titulo }}</p>
                 </div>
-                <img src="images/snoopy.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
@@ -40,6 +39,7 @@
                     </div>
                 </div>
             </div><br>
+            <div class="d-flex">{!! $usuarios->links() !!}</div>
     @endforeach
 </center>
 @endsection

@@ -55,7 +55,7 @@ class User extends Authenticatable
     
      public function postagens()
         {
-         return $this->hasMany(Postagem::class);
+         return $this->hasOne(Postagem::class);
          }
     
     // public function comentarios(){

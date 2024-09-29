@@ -32,9 +32,7 @@ class PostagensController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view("postagens.create")
-        ->with('users',$users);
+        return view("postagens.create");
               
     }
 
@@ -51,14 +49,14 @@ class PostagensController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            'imagem' => 'required|max:255',
-            'curtidas' => 'int',
+            // 'imagem' => 'max:255',
+            'curtidas' => 'bigInteger',
         ]);
         
         $postagem = new Postagem();
         $postagem->titulo = $storeData["titulo"];
         $postagem->conteudo = $storeData["conteudo"];
-        $postagem->imagem = $storeData["imagem"];
+        // $postagem->imagem = $storeData["imagem"];
         $postagem->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
@@ -66,7 +64,7 @@ class PostagensController extends Controller
         $postagem->user_id = $user_id;
         
         $postagem->save();
-        return redirect()->route('postagens.index')->withSuccess(__('Postagem salva com sucesso.'));
+        return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
     }
 
     /**
