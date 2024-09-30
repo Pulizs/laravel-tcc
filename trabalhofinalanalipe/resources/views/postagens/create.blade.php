@@ -24,9 +24,6 @@
                             </svg></span>
                         <input type="text" class="form-control" placeholder="Título" aria-label="Título"
                             aria-describedby="basic-addon1">
-                            @if ($errors->has('titulo'))
-                                <span class="text-danger text-left">{{ $errors->first('titulo') }}</span>
-                            @endif
                     </div>
                     <div class="input-group mb-3">
                         <div class="form-floating">

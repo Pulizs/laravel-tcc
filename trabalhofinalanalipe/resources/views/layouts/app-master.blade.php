@@ -12,7 +12,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 	<meta name="generator" content="ifpr 1.0">
-	<link rel="icon" href="{!! url('assets/images/logo mc.png') !!}">
+	<link rel="icon" href="{!! url('assets/images/logobranca_mathscience-sem_fundo.png') !!}">
 	<title>MathScience Space</title>
  
 	<link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">

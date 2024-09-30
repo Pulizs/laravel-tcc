@@ -1,18 +1,12 @@
 
-<footer style="background-color: #F3B8CC;">
+<footer style="background-color: #D0AAD1;">
     <!-- Grid container -->
     <div class="container p-4">
         <!--Grid row-->
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0" style="color: white;">
-                <h5 class="text-uppercase">Footer Content</h5>
-
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                    aliquam voluptatem veniam, est atque cumque eum delectus sint!
-                </p>
+                <img src="{!! url('assets/images/logobranca_mathscience-sem_fundo.png') !!}" alt="" width=30%>
             </div>
             <!--Grid column-->
 
