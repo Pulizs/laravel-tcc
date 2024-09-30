@@ -37,15 +37,18 @@
 	
 	<link href="signin.css" rel="stylesheet"> -->
 </head>
-<body class="text-center">
+<body>
 
+	
+	<div class="text-center">
 	@auth
-	   @include('layouts.partials.navbarlogged')
+	@include('layouts.partials.navbarlogged')
 	@endauth
-   
+	
 	@guest
-	   @include('layouts.partials.navbar')
-   	@endguest
+	@include('layouts.partials.navbar')
+	@endguest
+</div>
    
 	<main class="form-signin">
 	

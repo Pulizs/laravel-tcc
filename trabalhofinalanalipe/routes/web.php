@@ -101,6 +101,10 @@ Route::group([
 
 
         Route::get("/materiais", "MateriaisController@index")->name("materiais.index");
+        Route::get("/perfil", "PerfilController@index")->name("perfil.index");
+        Route::get("/duvidas", "DuvidasController@index")->name("duvidas.index");
+        Route::get("/configuracao", "ConfiguracaoController@index")->name("configuracao.index");
+        Route::get("/eventos", "EventosController@index")->name("eventos.index");
         
      
       
