@@ -41,7 +41,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel" style="background-color: #D0AAD1;">
+                    aria-labelledby="offcanvasNavbarLabel" style="background-color: #D0E9E9;">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="{!! url('assets/images/logo_mathscience-sem_fundo.png') !!}" width="50px"
                                 height="10%" alt="">

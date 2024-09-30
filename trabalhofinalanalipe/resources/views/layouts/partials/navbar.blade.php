@@ -33,7 +33,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel" style="background-color: #F3B8CC;">
+                    aria-labelledby="offcanvasNavbarLabel" style="background-color: #D0E9E9;">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="{!! url('assets/images/logo mc.png') !!}" width="50px"
                                 height="10%" alt="">
