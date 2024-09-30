@@ -6,7 +6,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Yasmin Voss">
 	<meta name="generator" content="ifpr 1.0">
-	<title>Super WEB APP</title>
+	<title>MathScience Space</title>
  
 	<link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
  

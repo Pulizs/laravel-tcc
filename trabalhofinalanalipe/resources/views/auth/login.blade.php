@@ -1,4 +1,5 @@
-@extends('layouts.auth-master')
+<!-- @extends('layouts.auth-master') -->
+@extends('layouts.app-master') @section('content')
  
 <!-- @section('content')
 <center>
