@@ -107,6 +107,7 @@ Route::group([
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
         
      
+        Route::get("/materiais/create", "MateriaisController@create")->name("materiais.create");
       
         /**
          * Logout Routes
