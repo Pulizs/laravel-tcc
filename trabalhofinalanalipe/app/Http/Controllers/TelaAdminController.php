@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\postagem;
+use App\Models\telaAdmin;
 use App\Models\User;
 use App\Models\Material;
 
@@ -17,7 +17,8 @@ class TelaAdminController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
+        $users = User::orderBy("id", "desc")->paginate(10);
         $telaAdmin = Material::orderBy("id")->paginate(10);
         return view("telaAdmin.index")
         ->with('user', $user)
@@ -54,18 +55,18 @@ class TelaAdminController extends Controller
             'curtidas' => 'bigInteger',
         ]);
         
-        $postagem = new Postagem();
-        $postagem->titulo = $storeData["titulo"];
-        $postagem->conteudo = $storeData["conteudo"];
-        // $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        $telaAdmin = new TelaAdmin();
+        $telaAdmin->titulo = $storeData["titulo"];
+        $telaAdmin->conteudo = $storeData["conteudo"];
+        // $telaAdmin->imagem = $storeData["imagem"];
+        $telaAdmin->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
         
-        $postagem->user_id = $user_id;
+        $telaAdmin->user_id = $user_id;
         
-        $postagem->save();
-        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem criada com sucesso.'));
+        $telaAdmin->save();
+        return redirect()->route('telaAdmin.index')->withSuccess(__('telaAdmin criada com sucesso.'));
     }
 
     /**
@@ -76,8 +77,8 @@ class TelaAdminController extends Controller
      */
     public function show($id)
     {
-        $postagem = Postagem::findOrFail($id);
-        return view("telaAdmin.show",compact("postagem"));
+        $telaAdmin = TelaAdmin::findOrFail($id);
+        return view("telaAdmin.show",compact("telaAdmin"));
         
     }
 
@@ -89,9 +90,9 @@ class TelaAdminController extends Controller
      */
     public function edit($id)
     {
-        $postagem = Postagem::findOrFail($id);
+        $telaAdmin = TelaAdmin::findOrFail($id);
         $users = User::all();
-        return view("telaAdmin.edit",compact("postagem"))
+        return view("telaAdmin.edit",compact("telaAdmin"))
         ->with('users',$users );
        
  
@@ -114,18 +115,18 @@ class TelaAdminController extends Controller
             'curtidas' => 'required|max:255',
         ]);
         
-        $postagem = new Postagem();
-        $postagem->titulo = $storeData["titulo"];
-        $postagem->conteudo = $storeData["conteudo"];
-        $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        $telaAdmin = new TelaAdmin();
+        $telaAdmin->titulo = $storeData["titulo"];
+        $telaAdmin->conteudo = $storeData["conteudo"];
+        $telaAdmin->imagem = $storeData["imagem"];
+        $telaAdmin->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
         
-        $postagem->user_id = $user_id;
+        $telaAdmin->user_id = $user_id;
         
-        $postagem->update();
-        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem atualizada com sucesso.'));
+        $telaAdmin->update();
+        return redirect()->route('telaAdmin.index')->withSuccess(__('telaAdmin atualizada com sucesso.'));
     }
 
     /**
@@ -136,8 +137,8 @@ class TelaAdminController extends Controller
      */
     public function destroy($id)
     {
-        $postagem = Postagem::findOrFail($id);
-        $postagem->delete();
-        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem removida com sucesso.'));
+        $telaAdmin = TelaAdmin::findOrFail($id);
+        $telaAdmin->delete();
+        return redirect()->route('telaAdmin.index')->withSuccess(__('telaAdmin removida com sucesso.'));
     }
 }
