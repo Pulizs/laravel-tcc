@@ -8,7 +8,7 @@ use App\Models\postagem;
 use App\Models\User;
 use App\Models\Material;
 
-class MateriaisController extends Controller
+class TelaAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class MateriaisController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $materiais = Material::orderBy("id")->paginate(10);
-        return view("materiais.index")
+        $telaAdmin = Material::orderBy("id")->paginate(10);
+        return view("telaAdmin.index")
         ->with('user', $user)
-        ->with('materiais', $materiais);
+        ->with('telaAdmin', $telaAdmin);
         
       
     }
@@ -33,7 +33,7 @@ class MateriaisController extends Controller
      */
     public function create()
     {
-        return view("materiais.create");
+        return view("telaAdmin.create");
               
     }
 
@@ -65,7 +65,7 @@ class MateriaisController extends Controller
         $postagem->user_id = $user_id;
         
         $postagem->save();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem criada com sucesso.'));
+        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem criada com sucesso.'));
     }
 
     /**
@@ -77,7 +77,7 @@ class MateriaisController extends Controller
     public function show($id)
     {
         $postagem = Postagem::findOrFail($id);
-        return view("materiais.show",compact("postagem"));
+        return view("telaAdmin.show",compact("postagem"));
         
     }
 
@@ -91,7 +91,7 @@ class MateriaisController extends Controller
     {
         $postagem = Postagem::findOrFail($id);
         $users = User::all();
-        return view("materiais.edit",compact("postagem"))
+        return view("telaAdmin.edit",compact("postagem"))
         ->with('users',$users );
        
  
@@ -125,7 +125,7 @@ class MateriaisController extends Controller
         $postagem->user_id = $user_id;
         
         $postagem->update();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem atualizada com sucesso.'));
+        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem atualizada com sucesso.'));
     }
 
     /**
@@ -138,6 +138,6 @@ class MateriaisController extends Controller
     {
         $postagem = Postagem::findOrFail($id);
         $postagem->delete();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem removida com sucesso.'));
+        return redirect()->route('telaAdmin.index')->withSuccess(__('postagem removida com sucesso.'));
     }
 }

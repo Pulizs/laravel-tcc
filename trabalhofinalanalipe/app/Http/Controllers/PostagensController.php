@@ -19,8 +19,8 @@ class PostagensController extends Controller
         $user = Auth::user();
         $postagens = Postagem::orderBy("id")->paginate(10);
         return view("postagens.index")
-        ->with('user', $user)
-        ->with('postagens', $postagens);
+        ->with('users', $user)
+        ->with('postagem', $postagens);
         
       
     }
@@ -50,17 +50,17 @@ class PostagensController extends Controller
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
             // 'imagem' => 'max:255',
-            'curtidas' => 'bigInteger',
+            // 'curtidas' => 'bigInteger',
         ]);
         
         $postagem = new Postagem();
         $postagem->titulo = $storeData["titulo"];
         $postagem->conteudo = $storeData["conteudo"];
         // $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        // $postagem->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
-        
+
         $postagem->user_id = $user_id;
         
         $postagem->save();
@@ -91,7 +91,7 @@ class PostagensController extends Controller
         $postagem = Postagem::findOrFail($id);
         $users = User::all();
         return view("postagens.edit",compact("postagem"))
-        ->with('users',$users );
+        ->with('user',$users );
        
  
     }
@@ -109,16 +109,18 @@ class PostagensController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            'imagem' => 'required|max:255',
-            'curtidas' => 'required|max:255',
+            // 'imagem' => 'required|max:255',
+            // 'curtidas' => 'required|max:255',
         ]);
         
         $postagem = new Postagem();
         $postagem->titulo = $storeData["titulo"];
         $postagem->conteudo = $storeData["conteudo"];
-        $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        // $postagem->imagem = $storeData["imagem"];
+        // $postagem->curtidas = $storeData["curtidas"];
         
+        
+
         $user_id = $request["user_id"];
         
         $postagem->user_id = $user_id;

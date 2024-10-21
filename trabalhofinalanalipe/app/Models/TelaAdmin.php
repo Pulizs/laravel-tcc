@@ -4,24 +4,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Postagem extends Model
+class TelaAdmin extends Model
 {
     use HasFactory;
     
-    protected $table = "postagem";
+    protected $table = "materiais";
 
     protected $fillable = [
         "titulo",
         "conteudo",
-        // "imagem",
-        // "curtidas",
+        "imagem",
+        "curtidas",
     ];
 
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
 
-    public function usuario(){
-        return $this->hasMany(User::class);
-    }
 }

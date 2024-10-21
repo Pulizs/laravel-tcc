@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Endereco;
+use App\Models\Postagem;
 
 
 class UsuariosController extends Controller
@@ -48,7 +48,7 @@ class UsuariosController extends Controller
             'password' => 'required|max:255',
         ]);
         
-        $dados = array_merge($storeData, ["role" => "ROLE_USER"]);
+        $dados = array_merge($storeData, ["role" => "USER"]);
         
         // $endereco = new Endereco();
         // $endereco->logradouro = $request['logradouro'];

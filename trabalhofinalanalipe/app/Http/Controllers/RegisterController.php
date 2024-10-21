@@ -18,7 +18,7 @@ class RegisterController extends Controller
     {
         // faz a validação do formulário
         // salva o usuário no banco
-        $user = User::create(array_merge($request->validated(), ['role' => 'ROLE_USER']));
+        $user = User::create(array_merge($request->validated(), ['role' => 'USER']));
         
         // autentica o usuário
         auth()->login($user);
