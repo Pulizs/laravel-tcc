@@ -39,7 +39,6 @@
                     </div>
                 </div>
             </div><br>
-            <div class="d-flex">{!! $usuarios->links() !!}</div>
     @endforeach
 </center>
 @endsection
