@@ -16,7 +16,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card">
-                        <img src="images/test4.jpeg" class="card-img-top" alt="...">
+                        <!-- <img src="images/test4.jpeg" class="card-img-top" alt="..."> -->
                         <div class="card-body">
                             <h5 class="card-title">{{ $user->nome }}</h5>
                             <p class="card-text">{{ $user->nickname }}</p>
@@ -52,4 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
 @endforeach
+
+@endsection
