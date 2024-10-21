@@ -1,6 +1,6 @@
 @extends('layouts.app-master') @section('content')
 
-@foreach($usuarios as $usuario)
+@foreach($users as $user)
 <center>
             <h2>Controle de Usuários</h2>
             <form class="d-flex" role="search">
