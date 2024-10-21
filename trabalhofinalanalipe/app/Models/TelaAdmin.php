@@ -8,7 +8,7 @@ class TelaAdmin extends Model
 {
     use HasFactory;
     
-    protected $table = "materiais";
+    protected $table = "telaAdmin";
 
     protected $fillable = [
         "titulo",
@@ -17,8 +17,6 @@ class TelaAdmin extends Model
         "curtidas",
     ];
 
-    public function comentarios(){
-        return $this->hasMany(Comentario::class);
-    }
+    
 
 }
