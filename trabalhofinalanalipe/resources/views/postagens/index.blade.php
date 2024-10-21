@@ -5,11 +5,11 @@
 
         <br><br>
 <center>
-@foreach($postagens as $postagem)
+@foreach($postagem as $postagen)
 
             <div class="card" style="width: 40%;">
                 <div class="card-body">
-                    <p class="card-text">{{ $postagem->titulo }}</p>
+                    <p class="card-text">{{ $postagen->titulo }}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
