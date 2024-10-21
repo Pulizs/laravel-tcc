@@ -18,14 +18,14 @@
                     <div class="card">
                         <img src="images/test4.jpeg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $usuario->nome }}</h5>
-                            <p class="card-text">{{ $usuario->nickname }}</p>
+                            <h5 class="card-title">{{ $user->nome }}</h5>
+                            <p class="card-text">{{ $user->nickname }}</p>
                             <div class="row">
                                 <div class="col">
                                     <div class="btn-group">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                            {{ $usuario->role }}
+                                            {{ $user->role }}
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item active">ADM</a></li>
