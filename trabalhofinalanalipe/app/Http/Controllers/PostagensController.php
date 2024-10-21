@@ -59,7 +59,7 @@ class PostagensController extends Controller
         // $postagem->imagem = $storeData["imagem"];
         // $postagem->curtidas = $storeData["curtidas"];
         
-        $user_id = $request["user_id"];
+        $user_id = auth()->user()->id;
 
         $postagem->user_id = $user_id;
         
