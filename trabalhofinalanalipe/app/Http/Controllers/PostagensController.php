@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\postagem;
+use App\Models\Postagem;
 use App\Models\User;
 
 class PostagensController extends Controller
