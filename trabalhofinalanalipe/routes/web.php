@@ -105,6 +105,7 @@ Route::group([
         Route::get("/duvidas", "DuvidasController@index")->name("duvidas.index");
         Route::get("/configuracao", "ConfiguracaoController@index")->name("configuracao.index");
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
+        Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         
      
         Route::get("/materiais/create", "MateriaisController@create")->name("materiais.create");
