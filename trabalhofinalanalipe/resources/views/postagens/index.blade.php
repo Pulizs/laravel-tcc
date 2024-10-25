@@ -8,16 +8,16 @@
 @foreach($postagem as $postagen)
 
             <div class="card" style="width: 40%;">
+                <div class="card-header">
+                    <p class="text-start">{{ $postagen->user->nickname }}</p>
+                </div>
                 <div class="card-body">
                     <p class="card-text">{{ $postagen->titulo }}</p>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $postagen->user->id }}</p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{ $postagen->user->nickname }}</p>
-                </div>
-                <div class="card-body">
+                    <p class="card-text">{{ $postagen->conteudo }}</p>
+                </div><br>
+                <div class="card-header">
                     <div class="row">
                         <div class="col">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

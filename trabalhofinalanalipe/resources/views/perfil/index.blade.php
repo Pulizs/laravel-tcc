@@ -11,7 +11,7 @@
                 <h4>{{ $user->nome }}</h4>
                 <div class="row">
                     <div class="col">
-                        <p>@ {{ $user->nickname }}</p>
+                        <p>{{ $user->nickname }}</p>
                     </div>
                     <div class="col">
                         <p type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Seguidores:

@@ -1,7 +1,6 @@
-<!-- @extends('layouts.auth-master') -->
 @extends('layouts.app-master') @section('content')
  
-<!-- @section('content')
+ @section('content')
 <center>
 	<form method="post" action="{{ route('login.perform') }}">
        
@@ -38,6 +37,6 @@
 	</form>
 	</center>
 @endsection
- -->
+
 
  
