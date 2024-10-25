@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\postagem;
 use App\Models\User;
-use App\Models\Material;
+use App\Models\Livro;
 
-class MateriaisController extends Controller
+class LivrosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +17,10 @@ class MateriaisController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $materiais = Material::orderBy("id")->paginate(10);
-        return view("materiais.index")
+        $livros = Livro::orderBy("id")->paginate(10);
+        return view("livros.index")
         ->with('user', $user)
-        ->with('materiais', $materiais);
+        ->with('livros', $livros);
         
       
     }
@@ -33,7 +32,7 @@ class MateriaisController extends Controller
      */
     public function create()
     {
-        return view("materiais.create");
+        return view("livros.create");
               
     }
 
@@ -54,18 +53,18 @@ class MateriaisController extends Controller
             'curtidas' => 'bigInteger',
         ]);
         
-        $postagem = new Postagem();
-        $postagem->titulo = $storeData["titulo"];
-        $postagem->conteudo = $storeData["conteudo"];
-        // $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        $livro = new Livro();
+        $livro->titulo = $storeData["titulo"];
+        $livro->conteudo = $storeData["conteudo"];
+        // $livro->imagem = $storeData["imagem"];
+        $livro->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
         
-        $postagem->user_id = $user_id;
+        $livro->user_id = $user_id;
         
-        $postagem->save();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem criada com sucesso.'));
+        $livro->save();
+        return redirect()->route('livros.index')->withSuccess(__('livro criada com sucesso.'));
     }
 
     /**
@@ -76,8 +75,8 @@ class MateriaisController extends Controller
      */
     public function show($id)
     {
-        $postagem = Postagem::findOrFail($id);
-        return view("materiais.show",compact("postagem"));
+        $livro = livro::findOrFail($id);
+        return view("livros.show",compact("livro"));
         
     }
 
@@ -89,9 +88,9 @@ class MateriaisController extends Controller
      */
     public function edit($id)
     {
-        $postagem = Postagem::findOrFail($id);
+        $livro = Livro::findOrFail($id);
         $users = User::all();
-        return view("materiais.edit",compact("postagem"))
+        return view("livros.edit",compact("livro"))
         ->with('users',$users );
        
  
@@ -114,18 +113,18 @@ class MateriaisController extends Controller
             'curtidas' => 'required|max:255',
         ]);
         
-        $postagem = new Postagem();
-        $postagem->titulo = $storeData["titulo"];
-        $postagem->conteudo = $storeData["conteudo"];
-        $postagem->imagem = $storeData["imagem"];
-        $postagem->curtidas = $storeData["curtidas"];
+        $livro = new Livro();
+        $livro->titulo = $storeData["titulo"];
+        $livro->conteudo = $storeData["conteudo"];
+        $livro->imagem = $storeData["imagem"];
+        $livro->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
         
-        $postagem->user_id = $user_id;
+        $livro->user_id = $user_id;
         
-        $postagem->update();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem atualizada com sucesso.'));
+        $livro->update();
+        return redirect()->route('livros.index')->withSuccess(__('livro atualizada com sucesso.'));
     }
 
     /**
@@ -136,8 +135,8 @@ class MateriaisController extends Controller
      */
     public function destroy($id)
     {
-        $postagem = Postagem::findOrFail($id);
-        $postagem->delete();
-        return redirect()->route('materiais.index')->withSuccess(__('postagem removida com sucesso.'));
+        $livro = Livro::findOrFail($id);
+        $livro->delete();
+        return redirect()->route('livros.index')->withSuccess(__('livro removida com sucesso.'));
     }
 }
