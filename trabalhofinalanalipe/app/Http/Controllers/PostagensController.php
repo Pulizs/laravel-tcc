@@ -17,7 +17,7 @@ class PostagensController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $postagens = Postagem::orderBy("id")->paginate(10);
+        $postagens = Postagem::with('user')->orderBy('id', 'DESC')->get();
         return view("postagens.index")
         ->with('users', $user)
         ->with('postagem', $postagens);
@@ -60,6 +60,7 @@ class PostagensController extends Controller
         // $postagem->curtidas = $storeData["curtidas"];
         
         $user_id = auth()->user()->id;
+        $username_id = auth()->user()->nickname;
 
         $postagem->user_id = $user_id;
         
