@@ -21,7 +21,7 @@ class Postagem extends Model
         return $this->hasMany(Comentario::class);
     }
 
-    public function usuario(){
-        return $this->hasMany(User::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
