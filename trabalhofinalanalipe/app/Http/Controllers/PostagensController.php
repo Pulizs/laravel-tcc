@@ -50,7 +50,7 @@ class PostagensController extends Controller
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
             // 'imagem' => 'max:255',
-            // 'curtidas' => 'bigInteger',
+            'curtidas' => 'bigInteger',
         ]);
         
         $postagem = new Postagem();
@@ -58,6 +58,7 @@ class PostagensController extends Controller
         $postagem->conteudo = $storeData["conteudo"];
         // $postagem->imagem = $storeData["imagem"];
         // $postagem->curtidas = $storeData["curtidas"];
+        // $postagem = array_merge($storeData, ["curtidas" => 0]);
         
         $user_id = auth()->user()->id;
         $username_id = auth()->user()->nickname;
