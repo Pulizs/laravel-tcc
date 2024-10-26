@@ -5,7 +5,7 @@
 	<form method="post" action="{{ route('login.perform') }}">
        
     	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    	<img class="mb-4" src="{!! url('assets/images/ifpr_vertical.svg') !!}" alt="" width="202" height="187">
+    	<img class="mb-4" src="{!! url('assets/images/logo_mathscience-sem_fundo.png') !!}" alt="" width="202" height="187">
        
     	<h1 class="h3 mb-3 fw-normal">Login</h1>
  
@@ -30,7 +30,7 @@
           	<div class="form-group form-floating mb-3 mx-auto">
         	<button class="btn btn-lg btn-primary w-25 mx-auto" type="submit">Login</button>
         	<br/><br/>
-        	<a href="{{ route('home.index') }}" class="btn btn-lg btn-secondary w-25 mx-auto">Página Inicial</a>
+        	<a href="{{ route('register.perform') }}" class="btn btn-lg btn-secondary w-25 mx-auto">Criar Conta</a>
           	</div>
        
     	@include('auth.partials.copy')
