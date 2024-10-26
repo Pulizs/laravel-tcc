@@ -19,7 +19,7 @@ class TelaAdminController extends Controller
     {
         // $user = Auth::user();
         $users = User::orderBy("id", "desc")->paginate(10);
-        $telaAdmin = Material::orderBy("id")->paginate(10);
+        $telaAdmin = TelaAdmin::orderBy("id")->paginate(10);
         return view("telaAdmin.index")
         ->with('users', $users)
         ->with('telaAdmin', $telaAdmin);
