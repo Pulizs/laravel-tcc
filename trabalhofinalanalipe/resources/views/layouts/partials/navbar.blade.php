@@ -112,7 +112,7 @@
                             </li>
 							@guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login.perform')}}">Login <svg xmlns="http://www.w3.org/2000/svg"
+                                <a class="nav-link" href="{{ route('register.perform') }}">Login <svg xmlns="http://www.w3.org/2000/svg"
                                         width="16" height="16" fill="currentColor" class="bi bi-person-fill"
                                         viewBox="0 0 16 16">
                                         <path
