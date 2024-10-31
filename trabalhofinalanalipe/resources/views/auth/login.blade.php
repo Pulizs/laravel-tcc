@@ -1,6 +1,5 @@
 @extends('layouts.app-master') @section('content')
  
- @section('content')
 <center>
 	<form method="post" action="{{ route('login.perform') }}">
        

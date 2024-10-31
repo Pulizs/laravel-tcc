@@ -25,7 +25,7 @@
         <!-- NAVBAR -->
         <nav class="navbar" style="background-color: #D0E9E9;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('home.index') }}"><img src="{!! url('assets/images/logo mc.png') !!}" width="50px" height="10%"
+                <a class="navbar-brand" href="{{ route('home.index') }}"><img src="{!! url('assets/images/logo_mathscience-sem_fundo.png') !!}" width="50px" height="10%"
                         alt="">
                     Math-Science Space</a></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -35,7 +35,7 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel" style="background-color: #D0AAD1;">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="{!! url('assets/images/logo mc.png') !!}" width="50px"
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="{!! url('assets/images/logo_mathscience-sem_fundo.png') !!}" width="50px"
                                 height="10%" alt="">
                             Math-Science Space</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
