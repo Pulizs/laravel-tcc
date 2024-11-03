@@ -16,11 +16,20 @@ return new class extends Migration
         Schema::create('livros', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
-            $table->string("resumo")->nullable;
+            $table->string("resenha");
+            $table->string("tipo");
+            $table->string("autor");
+            $table->string("publicacao");
+            $table->bigInteger("user_id")->unsigned();
             $table->timestamps();
-          
         });
-        
+
+        Schema::table('livros', function (Blueprint $table) {
+            $table->foreign("user_id")
+                ->references("id")
+                ->on("users")
+                ->onDelete("cascade");
+        });
     }
 
     /**

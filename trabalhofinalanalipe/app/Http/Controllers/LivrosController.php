@@ -48,16 +48,20 @@ class LivrosController extends Controller
         
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
-            'conteudo' => 'max:255',
-            // 'imagem' => 'max:255',
-            'curtidas' => 'bigInteger',
+            'resenha' => 'required|max:255',
+            //'imagem' => 'max:255',
+            'tipo' => 'max:255',
+            'autor' => 'max:255',
+            'publicacao' => 'max:255',
         ]);
         
         $livro = new Livro();
         $livro->titulo = $storeData["titulo"];
-        $livro->conteudo = $storeData["conteudo"];
+        $livro->resenha = $storeData["resenha"];
         // $livro->imagem = $storeData["imagem"];
-        $livro->curtidas = $storeData["curtidas"];
+        $livro->tipo = $storeData["tipo"];
+        $livro->autor = $storeData["autor"];
+        $livro->publicacao = $storeData["publicacao"];
         
         $user_id = $request["user_id"];
         
@@ -108,16 +112,20 @@ class LivrosController extends Controller
             
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
-            'conteudo' => 'max:255',
-            'imagem' => 'required|max:255',
-            'curtidas' => 'required|max:255',
+            'resenha' => 'required|max:255',
+            //'imagem' => 'max:255',
+            'tipo' => 'max:255',
+            'autor' => 'max:255',
+            'publicacao' => 'max:255',
         ]);
         
         $livro = new Livro();
         $livro->titulo = $storeData["titulo"];
-        $livro->conteudo = $storeData["conteudo"];
-        $livro->imagem = $storeData["imagem"];
-        $livro->curtidas = $storeData["curtidas"];
+        $livro->resenha = $storeData["resenha"];
+        // $livro->imagem = $storeData["imagem"];
+        $livro->tipo = $storeData["tipo"];
+        $livro->autor = $storeData["autor"];
+        $livro->publicacao = $storeData["publicacao"];
         
         $user_id = $request["user_id"];
         

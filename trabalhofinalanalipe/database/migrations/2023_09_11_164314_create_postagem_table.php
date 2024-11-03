@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("titulo");
             $table->string("conteudo");
-            // $table->string("imagem")->nullable();
             $table->bigInteger("curtidas")->nullable();
             $table->bigInteger("user_id")->unsigned();
             $table->timestamps();

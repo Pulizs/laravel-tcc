@@ -12,13 +12,14 @@ class Livro extends Model
 
     protected $fillable = [
         "titulo",
-        "conteudo",
-        "imagem",
-        "curtidas",
+        "resenha",
+        "tipo",
+        "autor",
+        "publicacao"
     ];
 
-    public function comentarios(){
-        return $this->hasMany(Comentario::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }

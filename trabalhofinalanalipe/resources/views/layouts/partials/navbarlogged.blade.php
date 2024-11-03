@@ -61,7 +61,7 @@
 
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ route('materiais.index') }}" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" href="{{ route('livros.index') }}" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">Materiais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
                                         <path
@@ -80,7 +80,7 @@
                                                     d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
                                             </svg></a></li>
 
-                                    <li><a class="dropdown-item" href="{{ route('materiais.index') }}">Literatura <svg
+                                    <li><a class="dropdown-item" href="{{ route('livros.index') }}">Literatura <svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                                                 <path
@@ -135,6 +135,5 @@
                 </div>
             </div>
         </nav>
-        <br>
 
     </header>

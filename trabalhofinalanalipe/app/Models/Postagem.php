@@ -13,8 +13,8 @@ class Postagem extends Model
     protected $fillable = [
         "titulo",
         "conteudo",
-        // "imagem",
-        // "curtidas",
+        "image",
+        "curtidas",
     ];
 
     public function comentarios(){

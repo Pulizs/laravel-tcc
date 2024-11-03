@@ -49,22 +49,32 @@ class PostagensController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            // 'imagem' => 'max:255',
+            'imagem' => 'max:255',
             'curtidas' => 'bigInteger',
         ]);
+        
+        
         
         $postagem = new Postagem();
         $postagem->titulo = $storeData["titulo"];
         $postagem->conteudo = $storeData["conteudo"];
-        // $postagem->imagem = $storeData["imagem"];
         // $postagem->curtidas = $storeData["curtidas"];
         // $postagem = array_merge($storeData, ["curtidas" => 0]);
         
-        $user_id = auth()->user()->id;
-        $username_id = auth()->user()->nickname;
 
+        //upload image
+         $file_name = strtotime("now") . $request->file('image')->getClientOriginalName();
+         $path = $request->file('image')->storeAs('uploads', $file_name);
+         
+         $data = $request->all();
+         $data['image'] = $path;
+         
+        // $postagem->image = $file_name;
+        //pega o id do usuário
+        $user_id = auth()->user()->id;
         $postagem->user_id = $user_id;
         
+
         $postagem->save();
         return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
     }

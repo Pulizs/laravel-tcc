@@ -17,6 +17,11 @@
                 <p class="card-text">{{ $postagen->titulo }}</p>
             </div>
             <div class="card-body">
+                <figure>
+                    <img src='{{ asset('storage/{$postagen->image}') }}' alt="[image]"> 
+                </figure>
+            </div>
+            <div class="card-body">
                 <p class="card-text">{{ $postagen->conteudo }}</p>
             </div><br>
             <div class="card-header">

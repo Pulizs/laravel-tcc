@@ -100,16 +100,20 @@ Route::group([
         Route::get('/email/email{professor}', "MailController@index")->name("email.index");
 
 
-        Route::get("/materiais", "MateriaisController@index")->name("materiais.index");
+        Route::get("/livros", "LivrosController@index")->name("livros.index");
+
         Route::get("/perfil", "PerfilController@index")->name("perfil.index");
+
         Route::get("/duvidas", "DuvidasController@index")->name("duvidas.index");
+
         Route::get("/configuracao", "ConfiguracaoController@index")->name("configuracao.index");
+
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
+        Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
+
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         
      
-        Route::get("/materiais/create", "MateriaisController@create")->name("materiais.create");
-        Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
       
         /**
          * Logout Routes
