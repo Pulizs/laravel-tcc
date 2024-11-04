@@ -101,6 +101,12 @@ Route::group([
 
 
         Route::get("/livros", "LivrosController@index")->name("livros.index");
+        Route::get("/livros/create", "LivrosController@create")->name("livros.create");
+        Route::post("/livros/create", "LivrosController@store")->name("livros.store");
+        Route::get('/livros/{livros}/show', 'LivrosController@show')->name('livros.show');
+        Route::get('/livros/{livros}/edit', 'LivrosController@edit')->name('livros.edit');
+        Route::patch('/livros/{livros}/update', 'LivrosController@update')->name('livros.update');
+        Route::delete('/livros/{livros}/delete', 'LivrosController@destroy')->name('livros.destroy');
 
         Route::get("/perfil", "PerfilController@index")->name("perfil.index");
 

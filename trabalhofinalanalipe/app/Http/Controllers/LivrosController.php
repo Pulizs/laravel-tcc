@@ -63,8 +63,7 @@ class LivrosController extends Controller
         $livro->autor = $storeData["autor"];
         $livro->publicacao = $storeData["publicacao"];
         
-        $user_id = $request["user_id"];
-        
+        $user_id = auth()->user()->id;
         $livro->user_id = $user_id;
         
         $livro->save();
