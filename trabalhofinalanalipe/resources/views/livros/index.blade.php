@@ -2,8 +2,9 @@
 
 <div class="bg-light p-5 rounded">
 
+    @if(auth()->user()->role == "admin")
     <a href="{{ route('livros.create') }}"><button type="button" class="btn btn-primary">+ Novo Livro</button></a>
-
+    @endif
     <br><br>
 
 
@@ -37,7 +38,7 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -88,8 +89,7 @@
                 </div>
             </div>
         </div>
-
-        @endforeach
+        
     </div>
 
     @endsection

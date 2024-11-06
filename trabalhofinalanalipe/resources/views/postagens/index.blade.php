@@ -12,6 +12,9 @@
         <div class="card" style="width: 40%;">
             <div class="card-header">
                 <p class="text-start">{{ $postagen->user->nickname }}</p>
+                @if(auth()->user()->id == $postagen->user->id)
+                <p class="text-start">{{ $postagen->user->nickname }}</p>
+                @endif
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagen->titulo }}</p>

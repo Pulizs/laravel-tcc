@@ -27,6 +27,8 @@ Route::group([
      */
     Route::get('/', 'HomeController@index')->name('home.index');
 
+
+    //telas que um usuario sem login pode acessar
     Route::group([
         'middleware' => [
             'guest'
@@ -43,6 +45,10 @@ Route::group([
          */
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
+
+
+        Route::get("/livros", "LivrosController@index")->name("livros.index");
+        Route::get("/postagens", "PostagensController@index")->name("postagens.index");
     });
 
     Route::group([
@@ -118,6 +124,7 @@ Route::group([
         Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
+        Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');
         
      
       
