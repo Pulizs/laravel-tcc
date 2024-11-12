@@ -1,23 +1,17 @@
 @extends('layouts.app-master') @section('content')
 
-
 <div class="bg-light p-5 rounded">
-    <a href="{{ route('postagens.create') }}"><button type="button" class="btn btn-primary">+ Novo Post</button></a>
-
-    <br><br>
-
     <center>
-        @foreach($postagem as $postagen)
 
         <div class="card" style="width: 40%;">
             <div class="card-header">
-                <p class="text-end">{{ $postagen->user->nickname }}</p>
-                @if(auth()->user()->id == $postagen->user->id)
-                <p class="text-start">{{ $postagen->user->nickname }}</p>
+                <p class="text-end">{{ $postagem->user->nickname }}</p>
+                @if(auth()->user()->id == $postagem->user->id)
+                <p class="text-start">{{ $postagem->user->nickname }}</p>
                 @endif
             </div>
             <div class="card-body">
-                <p class="card-text">{{ $postagen->titulo }}</p>
+                <p class="card-text">{{ $postagem->titulo }}</p>
             </div>
             <div class="card-body">
                 <figure>
@@ -25,7 +19,7 @@
                 </figure>
             </div>
             <div class="card-body">
-                <p class="card-text">{{ $postagen->conteudo }}</p>
+                <p class="card-text">{{ $postagem->conteudo }}</p>
             </div><br>
             <div class="card-header">
                 <div class="row">
@@ -55,7 +49,7 @@
 
                     </div>
                     <div class="col">
-                        <a class="btn" href="{{ route('postagens.show', $postagen->id) }}">
+                        <a class="btn" href="{{ route('postagens.show', $postagem->id) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-share" viewBox="0 0 16 16">
                                 <path
@@ -67,7 +61,6 @@
                 </div>
             </div>
         </div><br>
-        @endforeach
     </center>
 </div>
 @endsection
