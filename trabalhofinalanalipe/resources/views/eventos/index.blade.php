@@ -1,14 +1,21 @@
 @extends('layouts.app-master') 
 @section('content')
 
-<div class="container">
+<div class="bg-light p-5 rounded">
+
+<a href="{{ route('eventos.create') }}"><button type="button" class="btn btn-primary">+ Novo Post</button></a>
+<br><br>
+
+@foreach($eventos as $evento)
+
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Data</th>
-                    <th scope="col">Evento</th>
-                    <th scope="col">Palestrante</th>
-                    <th scope="col">Local</th>
+                    <th scope="col">{{ $evento->data }}</th>
+                    <th scope="col">{{ $evento->evento }}</th>
+                    <th scope="col">{{ $evento->palestrante }}</th>
+                    <th scope="col">{{ $evento->local }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,5 +49,7 @@
             </tbody>
         </table>
     </div>
+</div>
+@endforeach
 
     @endsection

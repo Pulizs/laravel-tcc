@@ -54,10 +54,10 @@ class EventosController extends Controller
         ]);
         
         $evento = new Evento();
-        $evento->titulo = $storeData["titulo"];
-        $evento->conteudo = $storeData["conteudo"];
-        // $evento->imagem = $storeData["imagem"];
-        $evento->curtidas = $storeData["curtidas"];
+        $evento->data = $storeData["data"];
+        $evento->evento = $storeData["evento"];
+        $evento->palestrante = $storeData["palestrante"];
+        $evento->local = $storeData["local"];
         
         $user_id = $request["user_id"];
         
