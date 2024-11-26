@@ -19,8 +19,16 @@ return new class extends Migration
             $table->string("evento");
             $table->string("local");
             $table->string("palestrante");
+            $table->bigInteger("user_id")->unsigned();
             $table->timestamps();
           
+        });
+
+        Schema::table('eventos', function (Blueprint $table) {
+            $table->foreign("user_id")
+                ->references("id")
+                ->on("users")
+                ->onDelete("cascade");
         });
         
     }

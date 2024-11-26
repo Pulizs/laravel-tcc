@@ -133,8 +133,7 @@ class PostagensController extends Controller
         
         
 
-        $user_id = $request["user_id"];
-        
+        $user_id = auth()->user()->id;
         $postagem->user_id = $user_id;
         
         $postagem->update();

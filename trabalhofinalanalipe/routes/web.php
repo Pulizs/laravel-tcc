@@ -122,6 +122,7 @@ Route::group([
 
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
         Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
+        Route::post("/eventos/create", "EventosController@store")->name("eventos.store");
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');
