@@ -15,7 +15,7 @@
                         style=" height: 60vh; border-radius: 30px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="{!! url('assets/images/podcast1.png') !!}" class="d-block w-90" alt="..."
+                    <img src="{!! url('assets/images/banner2.gif') !!}" class="d-block w-90" alt="..."
                         style=" height: 60vh; border-radius: 30px;">
                 </div>
                 <div class="carousel-item">
