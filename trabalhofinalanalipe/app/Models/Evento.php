@@ -11,11 +11,14 @@ class Evento extends Model
     protected $table = "eventos";
 
     protected $fillable = [
-        "data",
-        "evento",
-        "palestrante",
-        "local",
+        "titulo",
+        "conteudo",
+        "imagem",
+        "curtidas",
     ];
 
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
 
 }

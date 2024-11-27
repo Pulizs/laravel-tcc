@@ -47,19 +47,20 @@ class EventosController extends Controller
         
         
         $storeData = $request->validate([
-            'data' => 'max:255',
-            'evento' => 'max:255',
-            'palestrante' => 'max:255',
-            'local' => 'max:255',
+            'titulo' => 'required|max:255',
+            'conteudo' => 'max:255',
+            // 'imagem' => 'max:255',
+            'curtidas' => 'bigInteger',
         ]);
         
         $evento = new Evento();
-        $evento->data = $storeData["data"];
-        $evento->evento = $storeData["evento"];
-        $evento->palestrante = $storeData["palestrante"];
-        $evento->local = $storeData["local"];
+        $evento->titulo = $storeData["titulo"];
+        $evento->conteudo = $storeData["conteudo"];
+        // $evento->imagem = $storeData["imagem"];
+        $evento->curtidas = $storeData["curtidas"];
         
-        $user_id = auth()->user()->id;
+        $user_id = $request["user_id"];
+        
         $evento->user_id = $user_id;
         
         $evento->save();
@@ -106,19 +107,20 @@ class EventosController extends Controller
     {
             
         $storeData = $request->validate([
-            'data' => 'max:255',
-            'evento' => 'max:255',
-            'palestrante' => 'max:255',
-            'local' => 'max:255',
+            'titulo' => 'required|max:255',
+            'conteudo' => 'max:255',
+            'imagem' => 'required|max:255',
+            'curtidas' => 'required|max:255',
         ]);
         
         $evento = new Evento();
-        $evento->data = $storeData["data"];
-        $evento->evento = $storeData["evento"];
-        $evento->palestrante = $storeData["palestrante"];
-        $evento->local = $storeData["local"];
+        $evento->titulo = $storeData["titulo"];
+        $evento->conteudo = $storeData["conteudo"];
+        $evento->imagem = $storeData["imagem"];
+        $evento->curtidas = $storeData["curtidas"];
         
-        $user_id = auth()->user()->id;
+        $user_id = $request["user_id"];
+        
         $evento->user_id = $user_id;
         
         $evento->update();

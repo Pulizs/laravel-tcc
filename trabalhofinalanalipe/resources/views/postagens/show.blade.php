@@ -5,7 +5,10 @@
 
         <div class="card" style="width: 40%;">
             <div class="card-header">
+                <p class="text-end">{{ $postagem->user->nickname }}</p>
+                @if(auth()->user()->id == $postagem->user->id)
                 <p class="text-start">{{ $postagem->user->nickname }}</p>
+                @endif
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagem->titulo }}</p>
@@ -46,11 +49,14 @@
 
                     </div>
                     <div class="col">
-                        @if(auth()->user()->id == $postagem->user->id)
-                        {!! Form::open(['method' => 'DELETE','route' => ['postagens.destroy', $postagem->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Remover', ['class' => 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                        <a class="btn" href="{{ route('postagens.show', $postagem->id) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-share" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
+                            </svg>
+                        </a>
+
                     </div>
                 </div>
             </div>

@@ -11,7 +11,10 @@
 
         <div class="card" style="width: 40%;">
             <div class="card-header">
+                <p class="text-end">{{ $postagen->user->nickname }}</p>
+                @if(auth()->user()->id == $postagen->user->id)
                 <p class="text-start">{{ $postagen->user->nickname }}</p>
+                @endif
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagen->titulo }}</p>
@@ -51,16 +54,6 @@
                         </button>
 
                     </div>
-                    @if(auth()->user()->id == $postagen->user->id)
-                    <div class="col">
-                        <a class="btn" href="{{ route('postagens.show', $postagen->id) }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                            </svg>
-                        </a>
-
-                    </div>
-                    @else
                     <div class="col">
                         <a class="btn" href="{{ route('postagens.show', $postagen->id) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -69,8 +62,8 @@
                                     d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
                             </svg>
                         </a>
+
                     </div>
-                    @endif
                 </div>
             </div>
         </div><br>
