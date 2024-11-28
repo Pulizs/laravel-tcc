@@ -24,6 +24,10 @@
         	@if ($errors->has('password'))
             	<span class="text-danger text-left">{{ $errors->first('password') }}</span>
         	@endif
+			<button>
+				<a href="{{route('password.request')}}">esqueceu a senha </a>
+			</button>
+			
     	</div>
  
           	<div class="form-group form-floating mb-3 mx-auto">
