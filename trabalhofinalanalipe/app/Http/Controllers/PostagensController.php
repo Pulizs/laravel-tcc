@@ -69,7 +69,7 @@ class PostagensController extends Controller
          $data = $request->all();
          $data['image'] = $path;
          
-        // $postagem->image = $file_name;
+         $postagem->image = $file_name;
         //pega o id do usuário
         $user_id = auth()->user()->id;
         $postagem->user_id = $user_id;
