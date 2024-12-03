@@ -67,7 +67,6 @@ class Configuration
         'requireSemicolons',
         'runtimeDir',
         'startupMessage',
-        'strictTypes',
         'theme',
         'updateCheck',
         'useBracketedPaste',
@@ -100,7 +99,6 @@ class Configuration
     private $pipedOutput;
     private $rawOutput = false;
     private $requireSemicolons = false;
-    private $strictTypes = false;
     private $useUnicode;
     private $useTabCompletion;
     private $newMatchers = [];
@@ -310,11 +308,6 @@ class Configuration
                     return self::VERBOSITY_VERY_VERBOSE;
                 case '3':
                 case 'vv': // `-vvv`
-                case 'vvv':
-                case 'vvvv':
-                case 'vvvvv':
-                case 'vvvvvv':
-                case 'vvvvvvv':
                     return self::VERBOSITY_DEBUG;
                 default: // implicitly normal, config file default wins
                     return;
@@ -623,18 +616,16 @@ class Configuration
     /**
      * Get the shell's temporary directory location.
      *
-     * Defaults to `/psysh` inside the system's temp dir unless explicitly
+     * Defaults to  `/psysh` inside the system's temp dir unless explicitly
      * overridden.
      *
      * @throws RuntimeException if no temporary directory is set and it is not possible to create one
-     *
-     * @param bool $create False to suppress directory creation if it does not exist
      */
-    public function getRuntimeDir($create = true): string
+    public function getRuntimeDir(): string
     {
         $runtimeDir = $this->configPaths->runtimeDir();
 
-        if ($create && !\is_dir($runtimeDir)) {
+        if (!\is_dir($runtimeDir)) {
             if (!@\mkdir($runtimeDir, 0700, true)) {
                 throw new RuntimeException(\sprintf('Unable to create PsySH runtime directory. Make sure PHP is able to write to %s in order to continue.', \dirname($runtimeDir)));
             }
@@ -659,7 +650,7 @@ class Configuration
      * Defaults to `/history` inside the shell's base config dir unless
      * explicitly overridden.
      */
-    public function getHistoryFile(): ?string
+    public function getHistoryFile(): string
     {
         if (isset($this->historyFile)) {
             return $this->historyFile;
@@ -676,12 +667,7 @@ class Configuration
             $this->setHistoryFile($files[0]);
         } else {
             // fallback: create our own history file
-            $configDir = $this->configPaths->currentConfigDir();
-            if ($configDir === null) {
-                return null;
-            }
-
-            $this->setHistoryFile($configDir.'/psysh_history');
+            $this->setHistoryFile($this->configPaths->currentConfigDir().'/psysh_history');
         }
 
         return $this->historyFile;
@@ -977,22 +963,6 @@ class Configuration
     }
 
     /**
-     * Enable or disable strict types enforcement.
-     */
-    public function setStrictTypes($strictTypes)
-    {
-        $this->strictTypes = (bool) $strictTypes;
-    }
-
-    /**
-     * Check whether to enforce strict types.
-     */
-    public function strictTypes(): bool
-    {
-        return $this->strictTypes;
-    }
-
-    /**
      * Enable or disable Unicode in PsySH specific output.
      *
      * Note that this does not disable Unicode output in general, it just makes
@@ -1030,11 +1000,7 @@ class Configuration
      */
     public function setErrorLoggingLevel($errorLoggingLevel)
     {
-        if (\PHP_VERSION_ID < 80400) {
-            $this->errorLoggingLevel = (\E_ALL | \E_STRICT) & $errorLoggingLevel;
-        } else {
-            $this->errorLoggingLevel = \E_ALL & $errorLoggingLevel;
-        }
+        $this->errorLoggingLevel = (\E_ALL | \E_STRICT) & $errorLoggingLevel;
     }
 
     /**
@@ -1072,7 +1038,7 @@ class Configuration
     public function getCodeCleaner(): CodeCleaner
     {
         if (!isset($this->cleaner)) {
-            $this->cleaner = new CodeCleaner(null, null, null, $this->yolo(), $this->strictTypes());
+            $this->cleaner = new CodeCleaner(null, null, null, $this->yolo());
         }
 
         return $this->cleaner;
@@ -1113,8 +1079,6 @@ class Configuration
      */
     public function setTabCompletion(bool $useTabCompletion)
     {
-        @\trigger_error('`setTabCompletion` is deprecated; call `setUseTabCompletion` instead.', \E_USER_DEPRECATED);
-
         $this->setUseTabCompletion($useTabCompletion);
     }
 
@@ -1136,8 +1100,6 @@ class Configuration
      */
     public function getTabCompletion(): bool
     {
-        @\trigger_error('`getTabCompletion` is deprecated; call `useTabCompletion` instead.', \E_USER_DEPRECATED);
-
         return $this->useTabCompletion();
     }
 
@@ -1269,18 +1231,6 @@ class Configuration
                 $this->pager = $pager;
             } elseif ($less = $this->configPaths->which('less')) {
                 // check for the presence of less...
-
-                // n.b. The busybox less implementation is a bit broken, so
-                // let's not use it by default.
-                //
-                // See https://github.com/bobthecow/psysh/issues/778
-                if (@\is_link($less)) {
-                    $link = @\readlink($less);
-                    if ($link !== false && \strpos($link, 'busybox') !== false) {
-                        return false;
-                    }
-                }
-
                 $this->pager = $less.' -R -F -X';
             }
         }
@@ -1315,8 +1265,6 @@ class Configuration
      */
     public function getTabCompletionMatchers(): array
     {
-        @\trigger_error('`getTabCompletionMatchers` is no longer used.', \E_USER_DEPRECATED);
-
         return [];
     }
 
@@ -1357,8 +1305,6 @@ class Configuration
      */
     public function addTabCompletionMatchers(array $matchers)
     {
-        @\trigger_error('`addTabCompletionMatchers` is deprecated; call `addMatchers` instead.', \E_USER_DEPRECATED);
-
         $this->addMatchers($matchers);
     }
 
@@ -1659,12 +1605,7 @@ class Configuration
      */
     public function getUpdateCheckCacheFile()
     {
-        $configDir = $this->configPaths->currentConfigDir();
-        if ($configDir === null) {
-            return false;
-        }
-
-        return ConfigPaths::touchFileWithMkdir($configDir.'/update_check.json');
+        return ConfigPaths::touchFileWithMkdir($this->configPaths->currentConfigDir().'/update_check.json');
     }
 
     /**

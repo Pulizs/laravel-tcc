@@ -30,6 +30,14 @@ class ShowCommand extends ReflectingCommand
     private $lastExceptionIndex;
 
     /**
+     * @param string|null $colorMode (deprecated and ignored)
+     */
+    public function __construct($colorMode = null)
+    {
+        parent::__construct();
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function configure()
@@ -46,7 +54,7 @@ class ShowCommand extends ReflectingCommand
 Show the code for an object, class, constant, method or property, or the context
 of the last exception.
 
-<return>show --ex</return> defaults to showing the lines surrounding the location of the last
+<return>cat --ex</return> defaults to showing the lines surrounding the location of the last
 exception. Invoking it more than once travels up the exception's stack trace,
 and providing a number shows the context of the given index of the trace.
 
@@ -64,7 +72,7 @@ HELP
      *
      * @return int 0 if everything went fine, or an exit code
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         // n.b. As far as I can tell, InputInterface doesn't want to tell me
         // whether an option with an optional value was actually passed. If you

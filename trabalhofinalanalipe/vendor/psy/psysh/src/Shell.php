@@ -27,7 +27,6 @@ use Psy\TabCompletion\Matcher;
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseCommand;
-use Symfony\Component\Console\Exception\ExceptionInterface as SymfonyConsoleException;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -50,7 +49,16 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Shell extends Application
 {
-    const VERSION = 'v0.12.5';
+    const VERSION = 'v0.11.18';
+
+    /** @deprecated */
+    const PROMPT = '>>> ';
+    /** @deprecated */
+    const BUFF_PROMPT = '... ';
+    /** @deprecated */
+    const REPLAY = '--> ';
+    /** @deprecated */
+    const RETVAL = '=> ';
 
     private $config;
     private $cleaner;
@@ -79,7 +87,7 @@ class Shell extends Application
      *
      * @param Configuration|null $config (default: null)
      */
-    public function __construct(?Configuration $config = null)
+    public function __construct(Configuration $config = null)
     {
         $this->config = $config ?: new Configuration();
         $this->cleaner = $this->config->getCodeCleaner();
@@ -142,8 +150,6 @@ class Shell extends Application
      */
     public static function debug(array $vars = [], $bindTo = null): array
     {
-        @\trigger_error('`Psy\\Shell::debug` is deprecated; call `Psy\\debug` instead.', \E_USER_DEPRECATED);
-
         return \Psy\debug($vars, $bindTo);
     }
 
@@ -214,7 +220,7 @@ class Shell extends Application
             new Command\TraceCommand(),
             new Command\BufferCommand(),
             new Command\ClearCommand(),
-            new Command\EditCommand($this->config->getRuntimeDir(false)),
+            new Command\EditCommand($this->config->getRuntimeDir()),
             // new Command\PsyVersionCommand(),
             $sudo,
             $hist,
@@ -246,6 +252,14 @@ class Shell extends Application
             new Matcher\ObjectMethodDefaultParametersMatcher(),
             new Matcher\FunctionDefaultParametersMatcher(),
         ];
+    }
+
+    /**
+     * @deprecated Nothing should use this anymore
+     */
+    protected function getTabCompletionMatchers()
+    {
+        @\trigger_error('getTabCompletionMatchers is no longer used', \E_USER_DEPRECATED);
     }
 
     /**
@@ -289,8 +303,6 @@ class Shell extends Application
      */
     public function addTabCompletionMatchers(array $matchers)
     {
-        @\trigger_error('`addTabCompletionMatchers` is deprecated; call `addMatchers` instead.', \E_USER_DEPRECATED);
-
         $this->addMatchers($matchers);
     }
 
@@ -313,7 +325,7 @@ class Shell extends Application
      *
      * @return int 0 if everything went fine, or an error code
      */
-    public function run(?InputInterface $input = null, ?OutputInterface $output = null): int
+    public function run(InputInterface $input = null, OutputInterface $output = null): int
     {
         // We'll just ignore the input passed in, and set up our own!
         $input = new ArrayInput([]);
@@ -436,7 +448,7 @@ class Shell extends Application
     /**
      * Configures the input and output instances based on the user arguments and options.
      */
-    protected function configureIO(InputInterface $input, OutputInterface $output): void
+    protected function configureIO(InputInterface $input, OutputInterface $output)
     {
         // @todo overrides via environment variables (or should these happen in config? ... probably config)
         $input->setInteractive($this->config->getInputInteractive());
@@ -654,7 +666,7 @@ class Shell extends Application
      *
      * @param bool $includeBoundObject Pass false to exclude 'this'. If you're
      *                                 passing the scope variables to `extract`
-     *                                 you _must_ exclude 'this'
+     *                                 in PHP 7.1+, you _must_ exclude 'this'
      *
      * @return array Associative array of scope variables
      */
@@ -674,7 +686,7 @@ class Shell extends Application
      *
      * @param bool $includeBoundObject Pass false to exclude 'this'. If you're
      *                                 passing the scope variables to `extract`
-     *                                 you _must_ exclude 'this'
+     *                                 in PHP 7.1+, you _must_ exclude 'this'
      *
      * @return array Associative array of magic scope variables
      */
@@ -919,58 +931,17 @@ class Shell extends Application
 
         $input = new ShellInput(\str_replace('\\', '\\\\', \rtrim($input, " \t\n\r\0\x0B;")));
 
-        if (!$input->hasParameterOption(['--help', '-h'])) {
-            try {
-                return $command->run($input, $this->output);
-            } catch (\Exception $e) {
-                if (!self::needsInputHelp($e)) {
-                    throw $e;
-                }
-
-                $this->writeException($e);
-
-                $this->output->writeln('--');
-                if (!$this->config->theme()->compact()) {
-                    $this->output->writeln('');
-                }
+        if ($input->hasParameterOption(['--help', '-h'])) {
+            $helpCommand = $this->get('help');
+            if (!$helpCommand instanceof Command\HelpCommand) {
+                throw new RuntimeException('Invalid help command instance');
             }
+            $helpCommand->setCommand($command);
+
+            return $helpCommand->run(new StringInput(''), $this->output);
         }
 
-        $helpCommand = $this->get('help');
-        if (!$helpCommand instanceof Command\HelpCommand) {
-            throw new RuntimeException('Invalid help command instance');
-        }
-        $helpCommand->setCommand($command);
-
-        return $helpCommand->run(new StringInput(''), $this->output);
-    }
-
-    /**
-     * Check whether a given input error would benefit from --help.
-     *
-     * @return bool
-     */
-    private static function needsInputHelp(\Exception $e): bool
-    {
-        if (!($e instanceof \RuntimeException || $e instanceof SymfonyConsoleException)) {
-            return false;
-        }
-
-        $inputErrors = [
-            'Not enough arguments',
-            'option does not accept a value',
-            'option does not exist',
-            'option requires a value',
-        ];
-
-        $msg = $e->getMessage();
-        foreach ($inputErrors as $errorMsg) {
-            if (\strpos($msg, $errorMsg) !== false) {
-                return true;
-            }
-        }
-
-        return false;
+        return $command->run($input, $this->output);
     }
 
     /**
@@ -1302,13 +1273,10 @@ class Shell extends Application
                 case \E_USER_NOTICE:
                 case \E_USER_DEPRECATED:
                 case \E_DEPRECATED:
+                case \E_STRICT:
                     return 'warning';
 
                 default:
-                    if ((\PHP_VERSION_ID < 80400) && $severity === \E_STRICT) {
-                        return 'warning';
-                    }
-
                     return 'error';
             }
         } else {
@@ -1351,21 +1319,10 @@ class Shell extends Application
             }
         }
 
-        if ($e instanceof PsyException || $e instanceof SymfonyConsoleException) {
+        if ($e instanceof PsyException) {
             $exceptionShortName = (new \ReflectionClass($e))->getShortName();
             $typeParts = \preg_split('/(?=[A-Z])/', $exceptionShortName);
-
-            switch ($exceptionShortName) {
-                case 'RuntimeException':
-                case 'LogicException':
-                    // These ones look weird without 'Exception'
-                    break;
-                default:
-                    if (\end($typeParts) === 'Exception') {
-                        \array_pop($typeParts);
-                    }
-                    break;
-            }
+            \array_pop($typeParts); // Removes "Exception"
 
             return \trim(\strtoupper(\implode(' ', $typeParts)));
         }
@@ -1553,7 +1510,7 @@ class Shell extends Application
      */
     protected function getHeader(): string
     {
-        return \sprintf('<whisper>%s by Justin Hileman</whisper>', self::getVersionHeader($this->config->useUnicode()));
+        return \sprintf('<whisper>%s by Justin Hileman</whisper>', $this->getVersion());
     }
 
     /**
@@ -1563,8 +1520,6 @@ class Shell extends Application
      */
     public function getVersion(): string
     {
-        @\trigger_error('`getVersion` is deprecated; call `self::getVersionHeader` instead.', \E_USER_DEPRECATED);
-
         return self::getVersionHeader($this->config->useUnicode());
     }
 
@@ -1588,6 +1543,14 @@ class Shell extends Application
     public function getManualDb()
     {
         return $this->config->getManualDb();
+    }
+
+    /**
+     * @deprecated Tab completion is provided by the AutoCompleter service
+     */
+    protected function autocomplete($text)
+    {
+        @\trigger_error('Tab completion is provided by the AutoCompleter service', \E_USER_DEPRECATED);
     }
 
     /**
