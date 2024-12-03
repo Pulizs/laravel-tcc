@@ -1,35 +1,47 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="1"
-    phpVersion='8.2'
-    resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    xsi:schemaLocation="https://getpsalm.org/schema/config https://getpsalm.org/schema/config"
+    autoloader="vendor/autoload.php"
+    cacheDirectory=".cache/psalm"
+    checkForThrowsDocblock="true"
+    checkForThrowsInGlobalScope="true"
+    disableSuppressAll="true"
+    ensureArrayIntOffsetsExist="true"
+    ensureArrayStringOffsetsExist="true"
+    ensureOverrideAttribute="true"
+    errorBaseline="psalm-baseline.xml"
+    errorLevel="1"
     findUnusedBaselineEntry="true"
     findUnusedCode="true"
-    errorBaseline="psalm-baseline.xml"
+    findUnusedPsalmSuppress="true"
+    findUnusedVariablesAndParams="true"
+    hideAllErrorsExceptPassedFiles="false"
+    limitMethodComplexity="true"
+    memoizeMethodCallResults="true"
+    restrictReturnTypes="true"
+    sealAllMethods="true"
+    sealAllProperties="true"
+    strictBinaryOperands="true"
+    useDocblockPropertyTypes="true"
+    usePhpDocMethodsWithoutMagicCall="true"
+    usePhpDocPropertiesWithoutMagicCall="true"
+    phpVersion="7.3"
 >
     <projectFiles>
         <directory name="library"/>
         <ignoreFiles>
+            <directory name="fixtures"/>
             <directory name="tests"/>
+            <directory name="tests/Fixture"/>
             <directory name="vendor"/>
+            <file name="library/Mockery/Mock.php" />
+            <file name="tests/Mockery/ContainerTest.php"/>
+            <file name="tests/Mockery/MockTest.php"/>
         </ignoreFiles>
     </projectFiles>
-    <issueHandlers>
-        <PossiblyInvalidArgument>
-            <errorLevel type="suppress">
-                <file name="library/Mockery/Mock.php" />
-            </errorLevel>
-        </PossiblyInvalidArgument>
-        <MixedArgument>
-            <errorLevel type="suppress">
-                <file name="library/Mockery/Mock.php" />
-            </errorLevel>
-        </MixedArgument>
-    </issueHandlers>
     <plugins>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+<!--        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>-->
     </plugins>
 </psalm>
