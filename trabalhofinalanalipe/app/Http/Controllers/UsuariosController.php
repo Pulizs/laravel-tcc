@@ -42,18 +42,12 @@ class UsuariosController extends Controller
         $storeData = $request->validate([
             'nome' => 'required|max:255',
             'nickname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email',
-            'celular' => 'required|max:14',
+            'email' => 'required|max:255',
+            'celular' => 'required|max:255',
             'role' => 'required|max:255',
             'password' => 'required|max:255',
         ]);
         
-        ([
-            'email.unique' => 'O e-mail informado já está em uso. Por favor, utilize outro.',
-        ]);
-    
-
-
         $dados = array_merge($storeData, ["role" => "USER"]);
         
         // $endereco = new Endereco();
@@ -117,8 +111,8 @@ class UsuariosController extends Controller
         $storeData = $request->validate([
             'nome' => 'required|max:255',
             'nickname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email',
-            'celular' => 'required|max:14',
+            'email' => 'required|max:255',
+            'celular' => 'required|max:255',
             'role' => 'required|max:255',
             'password' => 'required|max:255',
         ]);

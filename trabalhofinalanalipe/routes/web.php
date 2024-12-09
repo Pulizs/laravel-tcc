@@ -6,7 +6,7 @@ use App\Http\Controllers\UserPDFController;
 use App\Http\Controllers\DisciplinaPDFController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-
+use App\Http\Controllers\PostagensController;
 
 /*
  * |--------------------------------------------------------------------------
@@ -110,6 +110,14 @@ Route::group([
         Route::get('/professores/{professor}/disciplinas', 'ProfessoresController@disciplinas')->name('professores.disciplinas');
                
         Route::Resource("/users/pdf", UserPDFController::class );
+
+
+
+
+        Route::resource('postagens', PostagensController::class);
+
+
+
        
         Route::get("/disciplinas/pdf", "DisciplinaPDFController@index")->name("pdf.index");
         
@@ -135,8 +143,13 @@ Route::group([
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');
+        Route::get('/telaAdmin/{user}/show', 'TelaAdminController@show')->name('telaAdmin.show');
+        Route::patch('/telaAdmin/{user}/update', 'TelaAdminController@update')->name('telaAdmin.update');
+        Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
-     
+        Route::get("/comentarios", "ComentariosController@index")->name("comentarios.index");
+        Route::get("/comentarios/create", "ComentariosController@create")->name("comentarios.create");
+        Route::post("/comentarios/create", "ComentariosController@store")->name("comentarios.store");
       
         /**
          * Logout Routes

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAcess
+class Bolsista2Acess
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class AdminAcess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 'admin'){
+        if(Auth::check() && Auth::user()->role == 'bolsista2'){
             return $next($request);
         }else{
             dd("vc nao tem acesso");

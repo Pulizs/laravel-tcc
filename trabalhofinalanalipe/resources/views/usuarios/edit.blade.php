@@ -1,112 +1,96 @@
 @extends('layouts.app-master')
- 
+
 @section('content')
-	<div class="bg-light p-4 rounded">
-    	<h1>Alterar usuario</h1>
-    	<div class="lead">
-           
-    	</div>
-       
-    	<div class="container mt-4">
-        	<form method="post" action="{{ route('usuarios.update', $usuario->id) }}">
-            	@method('patch')
-            	@csrf
-            	<div class="mb-3">
-                	<label for="nome" class="form-label">Nome</label>
-                	<input value="{{ $usuario->nome }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="nome"
-                    	placeholder="Nome" required>
- 
-                	@if ($errors->has('nome'))
-                    	<span class="text-danger text-left">{{ $errors->first('name') }}</span>
-                	@endif
-            	</div>
-            	<div class="mb-3">
-                	<label for="email" class="form-label">Email</label>
-                	<input value="{{ $usuario->email }}"
-                    	type="email"
-                    	class="form-control"
-                    	name="email"
-                    	placeholder="Email" required>
-                	@if ($errors->has('email'))
-                    	<span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                	@endif
-            	</div>
-            	<div class="mb-3">
-                	<label for="role" class="form-label">Role</label>
-                	<input value="{{ $usuario->role }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="role"
-                    	placeholder="Role" required>
-                	@if ($errors->has('role'))
-                    	<span class="text-danger text-left">{{ $errors->first('role') }}</span>
-                	@endif
-            	</div>
-            	<div class="mb-3">
-                	<label for="logradouro" class="form-label">Logradouro</label>
-                	<input value="{{ $usuario->endereco->logradouro }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="logradouro"
-                    	placeholder="Logradouro" required>
-                	@if ($errors->has('logradouro'))
-                    	<span class="text-danger text-left">{{ $errors->first('logradouro') }}</span>
-                	@endif
-            	</div>
-            	            	<div class="mb-3">
-                	<label for="cep" class="form-label">Cep</label>
-                	<input value="{{ $usuario->endereco->cep }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="cep"
-                    	placeholder="Cep" required>
-                	@if ($errors->has('cep'))
-                    	<span class="text-danger text-left">{{ $errors->first('cep') }}</span>
-                	@endif
-            	</div>
-            	            	<div class="mb-3">
-                	<label for="cidade" class="form-label">Cidade</label>
-                	<input value="{{ $usuario->endereco->cidade }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="cidade"
-                    	placeholder="Cidade" required>
-                	@if ($errors->has('cidade'))
-                    	<span class="text-danger text-left">{{ $errors->first('cidade') }}</span>
-                	@endif
-            	</div>
-            	            	<div class="mb-3">
-                	<label for="numero" class="form-label">Numero</label>
-                	<input value="{{ $usuario->endereco->numero }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="numero"
-                    	placeholder="Numero" required>
-                	@if ($errors->has('numero'))
-                    	<span class="text-danger text-left">{{ $errors->first('numero') }}</span>
-                	@endif
-            	</div>
-            	            	<div class="mb-3">
-                	<label for="complemento" class="form-label">Complemento</label>
-                	<input value="{{ $usuario->endereco->complemento }}"
-                    	type="text"
-                    	class="form-control"
-                    	name="complemento"
-                    	placeholder="Complemento" required>
-                	@if ($errors->has('complemento'))
-                    	<span class="text-danger text-left">{{ $errors->first('complemento') }}</span>
-                	@endif
-            	</div>
-           	
-            	<button type="submit" class="btn btn-primary">Salvar</button>
-            	<a href="{{ route('usuarios.index') }}" class="btn btn-default">Cancelar</button>
-        	</form>
-    	</div>
- 
-	</div>
+<div class="bg-light p-5 rounded">
+
+	<form method="post" action="{{ route('usuarios.update', $usuario->id) }}">
+		@method('patch')
+		@csrf
+		<h2>Alterar Usuário</h2>
+		<br>
+
+		<center>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<img src="images/test4.jpeg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{ $usuario->nome }}</h5>
+							<p class="card-text">{{ $usuario->nickname }}</p>
+							<div class="row">
+								<div class="col">
+									<div class="input-group md-4">
+										<select class="form-select" id="inputGroupSelect01" name="role">
+											<option selected>{{ $usuario->role }}</option>
+											<option value="admin">ADM</option>
+											<option value="admin">user</option>
+											<option value="professor">Professor</option>
+											<option value="bolsista1">Bolsista Lvl.1</option>
+											<option value="bolsista2">Bolsista Lvl.2</option>
+										</select>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group flex-nowrap">
+										<span class="input-group-text" id="addon-wrapping">@</span>
+										<input type="text" class="form-control" name="role" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+									</div>
+								</div>
+							</div><br>
+							<div class="row">
+								<div class="col">
+									<button type="button" class="btn btn-outline-danger">Banir <svg
+											xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											fill="currentColor" class="bi bi-person-slash" viewBox="0 0 16 16">
+											<path
+												d="M13.879 10.414a2.501 2.501 0 0 0-3.465 3.465zm.707.707-3.465 3.465a2.501 2.501 0 0 0 3.465-3.465m-4.56-1.096a3.5 3.5 0 1 1 4.949 4.95 3.5 3.5 0 0 1-4.95-4.95ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+										</svg></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="row">
+						<div class="col">
+							<h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-calendar2" viewBox="0 0 16 16">
+									<path
+										d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+									<path
+										d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+								</svg> Entrou em {{ $usuario->created_at }}</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-telephone" viewBox="0 0 16 16">
+									<path
+										d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+								</svg> {{ $usuario->celular }}</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-person-fill" viewBox="0 0 16 16">
+									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+								</svg> Nome Completo: {{ $usuario->nome }}</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<button type="button" class="btn btn-outline-secondary">Enviar mensagem</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</center>
+		<br><br>
+		<button type="submit" class="btn btn-primary">Salvar</button>
+
+	</form>
+</div>
+
 @endsection
-
-

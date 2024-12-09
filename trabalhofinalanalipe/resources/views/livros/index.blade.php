@@ -2,7 +2,7 @@
 
 <div class="bg-light p-5 rounded">
 
-    @if(auth()->user()->role == "admin")
+    @if(auth()->user()->role == "admin" || auth()->user()->role == "professor" || auth()->user()->role == "bolsista1" || auth()->user()->role == "bolsista2")
     <a href="{{ route('livros.create') }}"><button type="button" class="btn btn-primary">+ Novo Livro</button></a>
     @endif
     <br><br>
@@ -92,7 +92,7 @@
             </div>
         </div>
         @endforeach
-        
+
     </div>
 
     @endsection

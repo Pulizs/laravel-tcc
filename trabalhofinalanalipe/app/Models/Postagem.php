@@ -17,6 +17,12 @@ class Postagem extends Model
         "curtidas",
     ];
 
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'postagem_id', 'id');
+    }
+
+
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }

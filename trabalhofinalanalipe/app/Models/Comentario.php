@@ -11,6 +11,7 @@ class Comentario extends Model
     protected $table = "comentario";
 
     protected $fillable = [
+        "titulo",
         "conteudo",
         "imagem",
         "curtidas"
