@@ -7,12 +7,33 @@
     body.light-mode .bg-light {
         background-color: #f8f9fa !important;
         color: #000;
+        /* Texto preto no modo claro */
     }
 
     /* Fundo escuro */
     body.dark-mode .bg-light {
         background-color: #121212 !important;
         color: #fff;
+        /* Texto branco no modo escuro */
+    }
+
+    /* Adicionando estilos de texto para garantir contraste */
+    body.light-mode,
+    body.dark-mode {
+        color: #000;
+        /* Texto preto no modo claro por padrão */
+    }
+
+    body.dark-mode {
+        color: #fff;
+        /* Texto branco no modo escuro */
+    }
+
+    /* Estilos adicionais para garantir boa visibilidade */
+    .card,
+    .carousel-item {
+        color: inherit;
+        /* Herda a cor do body, se for necessário */
     }
 </style>
 
