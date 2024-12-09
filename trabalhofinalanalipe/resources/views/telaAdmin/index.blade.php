@@ -24,22 +24,15 @@
                         <div class="row">
                             <div class="col">
                                 <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-secondary" type="button">
                                         {{ $user->role }}
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item active">ADM</a></li>
-                                        <li><a class="dropdown-item ">Professor</a></li>
-                                        <li><a class="dropdown-item">Bolsista Lv.2</a></li>
-                                        <li><a class="dropdown-item">Bolsista Lv.1</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col">
-                                <a href="{{ route('telaAdmin.edit', $user->id) }}"><button type="button"
+                                <a href="{{ route('usuarios.edit', $user->id) }}"><button type="button"
                                         class="btn btn-success">Alterar</button></a>
                             </div>
                             <div class="col">

@@ -21,12 +21,19 @@
             </div>
             <div class="card-body">
                 <figure>
-                    <img src="{{ asset('storage/{$postagen->image}') }}" alt="[image]">
+                    <img src="{{ asset('storage/{$postagen->image}') }}" alt="">
                 </figure>
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagen->conteudo }}</p>
             </div><br>
+            <div class="card-body">
+                @foreach($postagen->images as $image)
+                <img src="{{ asset('storage/' . $postagen->image) }}" alt="" />
+                @endforeach    
+            </div>
+
+
             <div class="card-header">
                 <div class="row">
                     <div class="col">
