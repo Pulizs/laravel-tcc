@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Postagem;
 use App\Models\User;
+use App\Models\Image;
 
 class PostagensController extends Controller
 {
@@ -22,6 +23,9 @@ class PostagensController extends Controller
         ->with('users', $user)
         ->with('postagem', $postagens);
         
+
+        $postagens = Postagem::with('images')->orderBy('id', 'DESC')->get();
+        return view('postagens.index', compact('postagens'));
       
     }
 
@@ -49,7 +53,7 @@ class PostagensController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            'imagem' => 'max:255',
+            'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'curtidas' => 'bigInteger',
         ]);
         
@@ -60,24 +64,29 @@ class PostagensController extends Controller
         $postagem->conteudo = $storeData["conteudo"];
         // $postagem->curtidas = $storeData["curtidas"];
         // $postagem = array_merge($storeData, ["curtidas" => 0]);
-        
+        $postagem->user_id = auth()->user()->id;
 
-        //upload image
-         $file_name = strtotime("now") . $request->file('image')->getClientOriginalName();
-         $path = $request->file('image')->storeAs('uploads', $file_name);
-         
-         $data = $request->all();
-         $data['image'] = $path;
-         
-         $postagem->image = $file_name;
-        //pega o id do usuário
-        $user_id = auth()->user()->id;
-        $postagem->user_id = $user_id;
-        
+    // Salva a postagem no banco
+    $postagem->save();
 
-        $postagem->save();
-        return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
+    // Salva as imagens associadas
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $imageFile) {
+            $imagePath = $imageFile->store('uploads', 'public');
+
+            // Cria um novo registro de imagem relacionado à postagem
+            $image = new Image();
+            $image->path = $imagePath;
+            $image->postagem_id = $postagem->id;
+            $image->save();
+        }
     }
+        return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
+}
+
+
+    
+
 
     /**
      * Display the specified resource.

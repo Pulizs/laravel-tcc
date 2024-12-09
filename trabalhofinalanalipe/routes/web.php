@@ -6,7 +6,7 @@ use App\Http\Controllers\UserPDFController;
 use App\Http\Controllers\DisciplinaPDFController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-
+use App\Http\Controllers\PostagensController;
 
 /*
  * |--------------------------------------------------------------------------
@@ -110,6 +110,14 @@ Route::group([
         Route::get('/professores/{professor}/disciplinas', 'ProfessoresController@disciplinas')->name('professores.disciplinas');
                
         Route::Resource("/users/pdf", UserPDFController::class );
+
+
+
+
+        Route::resource('postagens', PostagensController::class);
+
+
+
        
         Route::get("/disciplinas/pdf", "DisciplinaPDFController@index")->name("pdf.index");
         

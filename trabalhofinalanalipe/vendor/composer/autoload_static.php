@@ -559,6 +559,8 @@ class ComposerStaticInitddd51f912d8fb72e8ecfea83f356f43e
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
+        'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\ConfiguracaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfiguracaoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DisciplinaPDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/DisciplinaPDFController.php',
@@ -608,6 +610,7 @@ class ComposerStaticInitddd51f912d8fb72e8ecfea83f356f43e
         'App\\Models\\Solicitacao' => __DIR__ . '/../..' . '/app/Models/Solicitacao.php',
         'App\\Models\\TelaAdmin' => __DIR__ . '/../..' . '/app/Models/TelaAdmin.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
