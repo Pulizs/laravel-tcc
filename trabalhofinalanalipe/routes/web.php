@@ -143,6 +143,9 @@ Route::group([
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');
+        Route::get('/telaAdmin/{user}/show', 'TelaAdminController@show')->name('telaAdmin.show');
+        Route::patch('/telaAdmin/{user}/update', 'TelaAdminController@update')->name('telaAdmin.update');
+        Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
      
       
