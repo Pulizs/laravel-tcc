@@ -147,7 +147,9 @@ Route::group([
         Route::patch('/telaAdmin/{user}/update', 'TelaAdminController@update')->name('telaAdmin.update');
         Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
-     
+        Route::get("/comentarios", "ComentariosController@index")->name("comentarios.index");
+        Route::get("/comentarios/create", "ComentariosController@create")->name("comentarios.create");
+        Route::post("/comentarios/create", "ComentariosController@store")->name("comentarios.store");
       
         /**
          * Logout Routes
