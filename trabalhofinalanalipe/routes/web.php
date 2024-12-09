@@ -116,6 +116,8 @@ Route::group([
 
         Route::resource('postagens', PostagensController::class);
 
+        Route::resource('livro', LivrosController::class);
+
 
 
        
@@ -140,6 +142,13 @@ Route::group([
 
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
         Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
+        Route::post("/eventos/create", "EventosController@store")->name("eventos.store");
+        Route::get('/eventos/{eventos}/show', 'EventosController@show')->name('eventos.show');
+        Route::get('/eventos/{eventos}/edit', 'EventosController@edit')->name('eventos.edit');
+        Route::patch('/eventos/{eventos}/update', 'EventosController@update')->name('eventos.update');
+        Route::delete('/eventos/{eventos}/delete', 'EventosController@destroy')->name('eventos.destroy');
+
+
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');

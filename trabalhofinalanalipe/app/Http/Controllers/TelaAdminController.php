@@ -51,21 +51,31 @@ class TelaAdminController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            // 'imagem' => 'max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'curtidas' => 'bigInteger',
         ]);
         
         $telaAdmin = new TelaAdmin();
         $telaAdmin->titulo = $storeData["titulo"];
         $telaAdmin->conteudo = $storeData["conteudo"];
-        // $telaAdmin->imagem = $storeData["imagem"];
-        $telaAdmin->curtidas = $storeData["curtidas"];
+        // $telaAdmin->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
         
         $telaAdmin->user_id = $user_id;
-        
+
+        $imagePaths = [];
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $imageFile) {
+                    $path = $imageFile->store('capaLivro', 'public');
+                    $imagePaths[] = $path;
+                }
+            }
+   
+        $telaAdmin->images = json_encode($imagePaths);
+
         $telaAdmin->save();
+
         return redirect()->route('telaAdmin.index')->withSuccess(__('telaAdmin criada com sucesso.'));
     }
 

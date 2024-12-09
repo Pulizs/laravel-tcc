@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
+            $table->json("images")->nullable();
             $table->string("resumo")->nullable;
             $table->timestamps();
           

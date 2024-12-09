@@ -11,7 +11,6 @@
 
         <div class="card" style="width: 40%;">
             <div class="card-header">
-                <p class="text-end">{{ $postagen->user->nickname }}</p>
                 @if(auth()->user()->id == $postagen->user->id)
                 <p class="text-start">{{ $postagen->user->nickname }}</p>
                 @endif
@@ -20,24 +19,18 @@
                 <p class="card-text">{{ $postagen->titulo }}</p>
             </div>
             <div class="card-body">
-                <figure>
-                    <img src="{{ asset('storage/{$postagen->image}') }}" alt="">
-                </figure>
+                <p class="card-text">{{ $postagen->conteudo }}</p>
             </div>
             <div class="card-body">
-                <p class="card-text">{{ $postagen->conteudo }}</p>
-            </div><br>
-            <div class="card-body">
-                @foreach($postagen->images as $image)
-                <img src="{{ asset('storage/' . $postagen->image) }}" alt="" />
-                @endforeach    
+            @foreach(json_decode($postagen->images) as $image)
+                <img src="{{ asset('storage/'.$image) }}" alt="" />
+            @endforeach
             </div>
 
 
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-
                         <button class="btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-chat-left-dots" viewBox="0 0 16 16">

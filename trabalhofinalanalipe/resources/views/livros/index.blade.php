@@ -14,7 +14,9 @@
         <div class="col">
             <div class="card" style="width: 18rem;" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
-                <img class="card-img-top" src="images/andarDoBedado.jpg" alt="Card image cap">
+                @foreach(json_decode($livro->images) as $image)
+                <img class="card-img-top" src="{{ asset('storage/'.$image) }}" alt="Card image cap">
+                @endforeach
                 <div class="card-body">
                     <h5 class="card-title">{{ $livro->titulo }}</h5>
                     <span class="badge text-bg-primary">Livro</span>
@@ -54,7 +56,9 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <img src="images/andarDoBedado.jpg" alt="Card image cap" style="width: 12rem;">
+                            @foreach(json_decode($livro->images) as $image) 
+                                <img src="{{ asset('storage/'.$image) }}" alt="Card image cap" style="width: 12rem;">
+                            @endforeach
                             </div>
 
                             <div class="col">

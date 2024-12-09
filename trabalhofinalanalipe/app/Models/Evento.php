@@ -11,10 +11,12 @@ class Evento extends Model
     protected $table = "eventos";
 
     protected $fillable = [
+        "data", 
         "titulo",
+        "palestrante" ,
         "conteudo",
-        "imagem",
-        "curtidas",
+        "image",
+        "local",
     ];
 
     public function comentarios(){

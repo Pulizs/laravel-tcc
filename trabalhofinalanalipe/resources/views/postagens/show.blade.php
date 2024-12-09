@@ -5,7 +5,6 @@
 
         <div class="card" style="width: 40%;">
             <div class="card-header">
-                <p class="text-end">{{ $postagem->user->nickname }}</p>
                 @if(auth()->user()->id == $postagem->user->id)
                 <p class="text-start">{{ $postagem->user->nickname }}</p>
                 @endif
@@ -14,9 +13,9 @@
                 <p class="card-text">{{ $postagem->titulo }}</p>
             </div>
             <div class="card-body">
-                <figure>
-                    <img src="{{ asset('storage/{$postagen->image}') }}" alt="[image]">
-                </figure>
+            @foreach(json_decode($postagem->images) as $image)
+                <img src="{{ asset('storage/'.$image) }}" alt="" />
+            @endforeach
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagem->conteudo }}</p>
