@@ -69,7 +69,7 @@
                                     <p>Conteudo: {{ $evento->conteudo }}</p>
                                 </div>
                                 <div class="row">
-                                    <p>Conteudo: {{ $evento->conteudo }}</p>
+                                    <p>Local: {{ $evento->local }}</p>
                                 </div>
                                 </div>
                                 </div>
