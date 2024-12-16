@@ -22,10 +22,7 @@
                         <a href="{{ route('eventos.index') }}" class="nav-link">Eventos</a>
                     </li>
                     <li>
-                        <a href="{{ route('duvidas.index') }}" class="nav-link">Dúvidas<a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sobreNos.index') }}" class="nav-link">Sobre</a>
+                        <a href="{{ route('duvidas.index') }}" class="nav-link">Sobre</a>
                     </li>
                     <li>
                         <a href="{{ route('postagens.index') }}" class="nav-link">Postagens</a>
