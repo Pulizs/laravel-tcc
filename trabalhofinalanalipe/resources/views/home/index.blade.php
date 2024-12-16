@@ -1,41 +1,31 @@
 @extends('layouts.app-master')
 
+
 @section('content')
+
 
 <style>
     /* Fundo claro */
     body.light-mode .bg-light {
         background-color: #f8f9fa !important;
         color: #000;
-        /* Texto preto no modo claro */
     }
+
 
     /* Fundo escuro */
     body.dark-mode .bg-light {
         background-color: #121212 !important;
         color: #fff;
-        /* Texto branco no modo escuro */
     }
+
 
     /* Adicionando estilos de texto para garantir contraste */
     body.light-mode,
     body.dark-mode {
-        color: #000;
-        /* Texto preto no modo claro por padrão */
-    }
-
-    body.dark-mode {
-        color: #fff;
-        /* Texto branco no modo escuro */
-    }
-
-    /* Estilos adicionais para garantir boa visibilidade */
-    .card,
-    .carousel-item {
         color: inherit;
-        /* Herda a cor do body, se for necessário */
     }
 </style>
+
 
 <div class="bg-light p-5 rounded">
     @auth
@@ -64,6 +54,7 @@
             </div>
             <br>
         </center>
+
 
         <div class="container">
             <div class="row">
@@ -104,6 +95,7 @@
         </div>
     @endauth
 
+
     @guest
         <center>
             <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
@@ -113,19 +105,10 @@
                             style=" height: 60vh; border-radius: 30px;">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
             <br>
         </center>
+
 
         <div class="container">
             <div class="row">
@@ -167,12 +150,14 @@
     @endguest
 </div>
 
+
 <script>
-    // Sincroniza o tema com a página
+    // Sincroniza o tema com a página para usuários autenticados e visitantes
     document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('theme') || 'light-mode';
         document.body.classList.add(savedTheme);
     });
 </script>
+
 
 @endsection
