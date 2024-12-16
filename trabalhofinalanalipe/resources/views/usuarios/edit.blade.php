@@ -22,7 +22,7 @@
 										<select class="form-select" id="inputGroupSelect01" name="role">
 											<option selected>{{ $usuario->role }}</option>
 											<option value="admin">ADM</option>
-											<option value="admin">user</option>
+											<option value="USER">user</option>
 											<option value="professor">Professor</option>
 											<option value="bolsista1">Bolsista Lvl.1</option>
 											<option value="bolsista2">Bolsista Lvl.2</option>
