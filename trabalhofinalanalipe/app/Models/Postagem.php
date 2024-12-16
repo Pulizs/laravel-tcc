@@ -17,6 +17,10 @@ class Postagem extends Model
         "curtidas",
     ];
 
+    protected $casts = [
+        'images' => 'array', // Converte JSON para array automaticamente
+    ];
+    
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }

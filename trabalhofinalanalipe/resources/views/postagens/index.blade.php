@@ -22,9 +22,9 @@
                 <p class="card-text">{{ $postagen->conteudo }}</p>
             </div>
             <div class="card-body">
-            @foreach(json_decode($postagen->images) as $image)
-                <img src="{{ asset('storage/'.$image) }}" alt="" />
-            @endforeach
+            @foreach(is_string($postagen->images) ? json_decode($postagen->images) : $postagen->images as $image)
+        <img src="{{ asset('storage/'.$image) }}" alt="Imagem do post" />
+    @endforeach
             </div>
 
 

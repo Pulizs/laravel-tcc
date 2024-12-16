@@ -13,9 +13,9 @@
                 <p class="card-text">{{ $postagem->titulo }}</p>
             </div>
             <div class="card-body">
-            @foreach(json_decode($postagem->images) as $image)
-                <img src="{{ asset('storage/'.$image) }}" alt="" />
-            @endforeach
+                @foreach(json_decode($postagem->images) as $image)
+                    <img src="{{ asset('storage/'.$image) }}" alt="Imagem do post" />
+                @endforeach
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $postagem->conteudo }}</p>
