@@ -66,7 +66,6 @@
     </nav>
 </header>
 
-
 <style>
     /* Modo claro (padrão) */
     body.light-mode {
@@ -74,21 +73,17 @@
         color: #000000;
     }
 
-
-    .navbar.light-mode {
-        background-color: #D0E9E9;
+    .navbar {
+        background-color: #D0E9E9 !important; /* Cor fixa */
     }
-
 
     .offcanvas.light-mode {
         background-color: #D0AAD1;
     }
 
-
     footer.light-mode {
         background-color: #D0AAD1;
     }
-
 
     /* Modo escuro */
     body.dark-mode {
@@ -96,21 +91,13 @@
         color: #ffffff;
     }
 
-
-    .navbar.dark-mode {
-        background-color: #333333;
-    }
-
-
     .offcanvas.dark-mode {
         background-color: #444444;
     }
 
-
     footer.dark-mode {
-        background-color: #333333;
+        background-color: #2F2F2F; /* Cinza escuro */
     }
-
 
     /* Estilo do botão de alternância */
     .theme-toggle {
@@ -121,53 +108,31 @@
         border-radius: 5px;
         padding: 5px 10px;
     }
-
-
-    .navbar.light-mode .theme-toggle {
-        background-color: #D0E9E9;
-        color: #000;
-    }
-
-
-    .navbar.dark-mode .theme-toggle {
-        background-color: #333333;
-        color: #fff;
-    }
 </style>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
-        const navbar = document.getElementById('navbar');
         const footer = document.querySelector('#footer'); // Selecionando o footer corretamente
-
 
         // Verifica se existe um tema salvo no localStorage
         const savedTheme = localStorage.getItem('theme') || 'light-mode';
         body.classList.add(savedTheme);
-        navbar.classList.add(savedTheme);
         footer.classList.add(savedTheme);
-
 
         // Atualizar o texto do botão
         themeToggle.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
-
 
         // Alternar tema ao clicar no botão
         themeToggle.addEventListener('click', () => {
             const isDarkMode = body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode', !isDarkMode);
-            navbar.classList.toggle('dark-mode', isDarkMode);
-            navbar.classList.toggle('light-mode', !isDarkMode);
             footer.classList.toggle('dark-mode', isDarkMode);
             footer.classList.toggle('light-mode', !isDarkMode);
 
-
             // Atualizar o texto do botão
             themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-
 
             // Salvar o estado no localStorage para persistência
             localStorage.setItem('theme', isDarkMode ? 'dark-mode' : 'light-mode');
