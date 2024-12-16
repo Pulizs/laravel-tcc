@@ -52,6 +52,14 @@ class PostagensController extends Controller
                 'curtidas' => 'bigInteger',
             ]);
             
+            
+            $postagem = new Postagem();
+            $postagem->titulo = $storeData["titulo"];
+            $postagem->conteudo = $storeData["conteudo"];
+            // $postagem->curtidas = $storeData["curtidas"];
+            // $postagem = array_merge($storeData, ["curtidas" => 0]);
+            $postagem->user_id = auth()->user()->id;
+
             $imagePaths = [];
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $imageFile) {
@@ -59,17 +67,9 @@ class PostagensController extends Controller
                     $imagePaths[] = $path;
                 }
             }
-            
-            $postagem = new Postagem();
-            $postagem->titulo = $storeData["titulo"];
-            $postagem->conteudo = $storeData["conteudo"];
-            $postagem->images = $imagePaths;
-            // $postagem->curtidas = $storeData["curtidas"];
-            // $postagem = array_merge($storeData, ["curtidas" => 0]);
-            $postagem->user_id = auth()->user()->id;
-
+   
+            $postagem->images = json_encode($imagePaths);
         
-            // $postagem->images = json_encode($imagePaths);
             $postagem->save();
         
 

@@ -13,7 +13,7 @@
         <div class="col">
             <div class="card" style="width: 18rem;" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
-                @foreach(json_decode($evento->images) as $image)
+                @foreach(json_decode($evento->images) as $evento)
                 <img class="card-img-top" src="{{ asset('storage/'.$image) }}" alt="Card image cap">
                 @endforeach
 
