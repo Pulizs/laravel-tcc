@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col">
 
-                        <a class="btn" href="{{ route('comentarios.create') }}">
+                        <a class="btn" href="{{ route('comentarios.create', $postagem->id) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-chat-left-dots" viewBox="0 0 16 16">
                                 <path

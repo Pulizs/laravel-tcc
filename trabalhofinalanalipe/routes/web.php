@@ -158,7 +158,7 @@ Route::group([
         Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
         Route::get("/comentarios", "ComentariosController@index")->name("comentarios.index");
-        Route::get("/comentarios/create", "ComentariosController@create")->name("comentarios.create");
+        Route::get("/comentarios/{postagem}/create", "ComentariosController@create")->name("comentarios.create");
         Route::post("/comentarios/create", "ComentariosController@store")->name("comentarios.store");
       
         /**
