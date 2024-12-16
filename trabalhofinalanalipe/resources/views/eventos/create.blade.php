@@ -1,7 +1,7 @@
 @extends('layouts.app-master') @section('content')
 
 
-
+<div class="bg-light p-5 rounded">
 <center>
 
     
@@ -30,10 +30,10 @@
                     </div>
 
                     </div>
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupFile01">Upload</label>
                         <input type="file" class="form-control" id="inputGroupFile01" name="images[]" multiple>
-                     </div>
+                     </div> -->
 
                     <div class="card-body">
                     <div class="input-group mb-3">
@@ -96,5 +96,6 @@
             </form>
             </div>
         </center>
+</div>
         <br>
 @endsection
