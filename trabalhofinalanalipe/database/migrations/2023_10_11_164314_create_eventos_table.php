@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->json("images")->nullable();
-            $table->string("resumo")->nullable;
+            $table->string("resumo");
+            $table->string("data");
+            $table->string("palestrante");
+            $table->string("local");
             $table->timestamps();
           
         });
