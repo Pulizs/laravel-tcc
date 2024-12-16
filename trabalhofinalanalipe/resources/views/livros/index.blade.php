@@ -14,7 +14,7 @@
         <div class="col">
             <div class="card" style="width: 18rem;">
                 @foreach(json_decode($livro->images) as $image)
-                <img class="card-img-top" src="{{ asset('storage/'.$image) }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ asset($image) }}" alt="Card image cap">
                 @endforeach
                 <div class="card-body">
                     <h5 class="card-title">{{ $livro->titulo }}</h5>

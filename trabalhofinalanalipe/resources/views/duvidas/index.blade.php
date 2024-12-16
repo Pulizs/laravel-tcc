@@ -8,7 +8,7 @@
             <p style="font-family: Quicksand;">Para eventuais dúvidas, sugestões ou reclamações entre em contato
                 conosco!</p><br>
             <img src="images/envelope.png" width="8%" alt=""><br>
-            <p style="font-family: Quicksand;">mathscience@gmail.com</p><br>
+            <p>suportemathsciencespace@gmail.com</p><br>
 
             <div class="container">
                 <div class="input-group mb-3">

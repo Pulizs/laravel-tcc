@@ -50,7 +50,7 @@ class EventosController extends Controller
             'data' =>  'required|date',
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            // 'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'palestrantre' => 'required|max:255',
             'local' =>'required|string',
         ]);
@@ -66,15 +66,15 @@ class EventosController extends Controller
         
         $postagem->user_id = auth()->user()->id;
         
-        // $imagePaths = [];
-        //     if ($request->hasFile('images')) {
-        //         foreach ($request->file('images') as $imageFile) {
-        //             $path = $imageFile->store('evento', 'public');
-        //             $imagePaths[] = $path;
-        //         }
-        //     }
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $imageFile) {
+                    $path = $imageFile->store('evento', 'public');
+                    $imagePaths[] = $path;
+                }
+            }
    
-        // $evento->images = json_encode($imagePaths);
+        $evento->images = json_encode($imagePaths);
 
         $evento->save();
         
