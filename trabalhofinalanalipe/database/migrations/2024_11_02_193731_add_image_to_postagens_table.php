@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sobre_nos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('postagem', function (Blueprint $table) {
+            $table->string('image')->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sobre_nos');
+        Schema::table('postagem', function (Blueprint $table) {
+            $table->dropColumn('image');
+        });
     }
 };

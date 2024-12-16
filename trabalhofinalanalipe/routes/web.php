@@ -138,11 +138,6 @@ Route::group([
 
         Route::get("/duvidas", "DuvidasController@index")->name("duvidas.index");
 
-        Route::get("/sobreNos", "sobreNosController@index")->name("sobreNos.index");
-        Route::resource('sobreNos', SobreNosController::class);
-
-
-
         Route::get("/configuracao", "ConfiguracaoController@index")->name("configuracao.index");
 
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
