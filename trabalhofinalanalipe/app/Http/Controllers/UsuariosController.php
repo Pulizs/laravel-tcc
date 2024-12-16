@@ -41,6 +41,7 @@ class UsuariosController extends Controller
     {
         $storeData = $request->validate([
             'nome' => 'required|max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20481',
             'nickname' => 'required|max:255',
             'email' => 'required|max:255',
             'celular' => 'required|max:255',
@@ -62,6 +63,19 @@ class UsuariosController extends Controller
         $user = User::create($dados);
         //salva o endreço relacionando com o usuário que foi criado
         // $user->endereco()->save($endereco);
+
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $path = $imageFile->store('perfil', 'public');
+                $imagePaths[] = $path;
+            }
+        }
+
+        $user->images = json_encode($imagePaths);
+    
+        $user->save();
+
         return redirect()->route('usuarios.index')->withSuccess(__('Usuario criado com sucesso.'));
         
     }
@@ -75,7 +89,8 @@ class UsuariosController extends Controller
     public function show($id)
     {
         $usuario = User::findOrFail($id);
-        return view("usuarios.show", compact("usuario"));
+        $postagens = $usuario->postagens()->get();
+        return view("usuarios.show", compact("usuario", "postagens"));
     }
 
     /**

@@ -146,12 +146,5 @@
     @endguest
 </div>
 
-<script>
-    // Sincroniza o tema com a página
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'light-mode';
-        document.body.classList.add(savedTheme);
-    });
-</script>
 
 @endsection

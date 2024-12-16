@@ -15,7 +15,7 @@ class Evento extends Model
         "titulo",
         "palestrante" ,
         "conteudo",
-        // "image",
+        "images",
         "local",
     ];
 

@@ -12,7 +12,7 @@
 					<img src="images/test4.jpeg" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">{{ $usuario->nome }}</h5>
-						<p class="card-text">@Junin157</p>
+						<p class="card-text">{{ $usuario->nickname }}</p>
 						<div class="row">
 							<div class="col">
 								<div class="btn-group">
@@ -78,11 +78,54 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<button type="button" class="btn btn-outline-secondary">Enviar mensagem</button>
+						<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Postagens</button>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
+		<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Postagens</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    @if($postagens && $postagens->count() > 0)
+        @foreach($postagens as $postagen)
+            <div class="card" style="width: 40%;">
+                <div class="card-header">
+                    <p class="text-start">{{ $postagen->user->nickname }}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ $postagen->titulo }}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ $postagen->conteudo }}</p>
+                </div>
+                <div class="card-body">
+                    @foreach(json_decode($postagen->images) as $image)
+                        <img src="{{ asset($image) }}" alt="Imagem do post" width="250px"/>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p>Este usuário não tem postagens.</p>
+    @endif
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</center>
 
 </div>

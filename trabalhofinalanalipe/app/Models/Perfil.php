@@ -13,12 +13,19 @@ class Perfil extends Model
     protected $fillable = [
         "titulo",
         "conteudo",
-        "imagem",
         "curtidas",
     ];
 
     public function comentarios(){
         return $this->hasMany(Comentario::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function postagem(){
+        return $this->belongsTo(Postagem::class);
     }
 
 }

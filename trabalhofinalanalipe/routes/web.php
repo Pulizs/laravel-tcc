@@ -7,7 +7,6 @@ use App\Http\Controllers\DisciplinaPDFController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PostagensController;
-use App\Http\Controllers\LivrosController;
 
 /*
  * |--------------------------------------------------------------------------
@@ -136,8 +135,19 @@ Route::group([
         Route::delete('/livros/{livros}/delete', 'LivrosController@destroy')->name('livros.destroy');
 
         Route::get("/perfil", "PerfilController@index")->name("perfil.index");
+        Route::get("/perfil/create", "PerfilController@create")->name("perfil.create");
+        Route::post("/perfil/create", "PerfilController@store")->name("perfil.store");
+        Route::get('/perfil/{perfil}/show', 'PerfilController@show')->name('perfil.show');
+        Route::get('/perfil/{perfil}/edit', 'PerfilController@edit')->name('perfil.edit');
+        Route::patch('/perfil/{perfil}/update', 'PerfilController@update')->name('perfil.update');
+        Route::delete('/perfil/{perfil}/delete', 'PerfilController@destroy')->name('perfil.destroy');
 
         Route::get("/duvidas", "DuvidasController@index")->name("duvidas.index");
+
+        Route::get("/sobreNos", "sobreNosController@index")->name("sobreNos.index");
+        Route::resource('sobreNos', SobreNosController::class);
+
+
 
         Route::get("/configuracao", "ConfiguracaoController@index")->name("configuracao.index");
 
@@ -158,7 +168,7 @@ Route::group([
         Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
         Route::get("/comentarios", "ComentariosController@index")->name("comentarios.index");
-        Route::get("/comentarios/{postagem}/create", "ComentariosController@create")->name("comentarios.create");
+        Route::get("/comentarios/create", "ComentariosController@create")->name("comentarios.create");
         Route::post("/comentarios/create", "ComentariosController@store")->name("comentarios.store");
       
         /**

@@ -49,7 +49,7 @@ class PerfilController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            // 'imagem' => 'max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20481',
             'curtidas' => 'bigInteger',
         ]);
         
@@ -57,16 +57,12 @@ class PerfilController extends Controller
         $perfil->titulo = $storeData["titulo"];
         $perfil->conteudo = $storeData["conteudo"];
         // $perfil->imagem = $storeData["imagem"];
-        $perfil->curtidas = $storeData["curtidas"];
+        // $perfil->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];
-        
-        $perfil->user_id = $user_id;
-        
         $perfil->save();
         return redirect()->route('perfil.index')->withSuccess(__('perfil criada com sucesso.'));
     }
-
     /**
      * Display the specified resource.
      *
@@ -76,7 +72,8 @@ class PerfilController extends Controller
     public function show($id)
     {
         $perfil = Perfil::findOrFail($id);
-        return view("perfil.show",compact("perfil"));
+        $postagens = $perfil->user->postagens;
+        return view("perfil.show",compact("perfil", "postagens"));
         
     }
 
@@ -93,6 +90,7 @@ class PerfilController extends Controller
         return view("perfil.edit",compact("perfil"))
         ->with('users',$users );
        
+        
  
     }
 

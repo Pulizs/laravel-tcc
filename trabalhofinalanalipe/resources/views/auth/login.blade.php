@@ -5,15 +5,17 @@
 
 
 .botao-esqc {
-	display: flex;
-    justify-content: flex-start; 
     gap: 10px;
     align-items: center;
 }
 
 
 .botao-esqc {
-    color: #b879bd;  
+    color: #b879bd;
+	border: none;  
+	text-decoration: none;
+	text-align: center;
+	align-items: center;
 }
 
 
@@ -59,9 +61,7 @@
         	@if ($errors->has('password'))
             	<span class="text-danger text-left">{{ $errors->first('password') }}</span>
         	@endif
-			<button>
 				<a href="{{route('password.request')}}" class="botao-esqc">Esqueci minha senha</a>
-			</button>
 			
     	</div>
  

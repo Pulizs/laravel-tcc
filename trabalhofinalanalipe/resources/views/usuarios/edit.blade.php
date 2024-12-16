@@ -12,7 +12,7 @@
 		<center>
 				<div class="col-md-4">
 					<div class="card">
-						<img src="images/test4.jpeg" class="card-img-top" alt="...">
+					
 						<div class="card-body">
 							<h5 class="card-title">{{ $usuario->nome }}</h5>
 							<p class="card-text">{{ $usuario->nickname }}</p>
@@ -35,6 +35,12 @@
 										<input type="text" class="form-control" name="role" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 									</div>
 								</div>
+							</div><br>
+							<div class="row">
+							<div class="form-group">
+        						<label for="images">Escolher Imagem</label>
+        						<input type="file" name="images[]" class="form-control" multiple>
+    						</div>
 							</div><br>
 							<div class="row">
 								<div class="col">
