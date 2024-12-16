@@ -26,9 +26,9 @@ class RegisterRequest extends FormRequest
         return [
             'nome' => 'required|min:3',
             'nickname' => 'required|min:3',
-            'celular' => 'required|min:9',
+            'celular' => 'required|min:3',
             'email' => 'required|min:3',
-            'password' => 'required|min:6',
+            'password' => 'required|min:3',
         ];
     }
 }

@@ -32,7 +32,7 @@
                         </div><br>
                         <div class="row">
                             <div class="col">
-                                <a href="{{ route('usuarios.show', $user->id) }}"><button type="button"
+                                <a href="{{ route('usuarios.edit', $user->id) }}"><button type="button"
                                         class="btn btn-success">Alterar</button></a>
                             </div>
                             <div class="col">

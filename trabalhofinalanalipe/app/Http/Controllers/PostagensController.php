@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Postagem;
 use App\Models\User;
+use App\Models\Image;
 
 class PostagensController extends Controller
 {
@@ -21,7 +22,11 @@ class PostagensController extends Controller
         return view("postagens.index")
         ->with('users', $user)
         ->with('postagem', $postagens);
-              
+        
+
+        $postagens = Postagem::with('images')->orderBy('id', 'DESC')->get();
+        return view('postagens.index', compact('postagens'));
+      
     }
 
     /**
@@ -43,39 +48,44 @@ class PostagensController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
-            $storeData = $request->validate([
-                'titulo' => 'required|max:255',
-                'conteudo' => 'max:255',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-                'curtidas' => 'bigInteger',
-            ]);
-            
-            
-            $postagem = new Postagem();
-            $postagem->titulo = $storeData["titulo"];
-            $postagem->conteudo = $storeData["conteudo"];
-            // $postagem->curtidas = $storeData["curtidas"];
-            // $postagem = array_merge($storeData, ["curtidas" => 0]);
-            $postagem->user_id = auth()->user()->id;
-
-            $imagePaths = [];
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $imageFile) {
-                    $path = $imageFile->store('uploads', 'public');
-                    $imagePaths[] = $path;
-                }
-            }
-   
-            $postagem->images = json_encode($imagePaths);
         
-            $postagem->save();
         
+        $storeData = $request->validate([
+            'titulo' => 'required|max:255',
+            'conteudo' => 'max:255',
+            'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'curtidas' => 'bigInteger',
+        ]);
+        
+        
+        
+        $postagem = new Postagem();
+        $postagem->titulo = $storeData["titulo"];
+        $postagem->conteudo = $storeData["conteudo"];
+        // $postagem->curtidas = $storeData["curtidas"];
+        // $postagem = array_merge($storeData, ["curtidas" => 0]);
+        $postagem->user_id = auth()->user()->id;
 
-        return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
+    // Salva a postagem no banco
+    $postagem->save();
 
+    // Salva as imagens associadas
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $imageFile) {
+            $imagePath = $imageFile->store('uploads', 'public');
+
+            // Cria um novo registro de imagem relacionado à postagem
+            $image = new Image();
+            $image->path = $imagePath;
+            $image->postagem_id = $postagem->id;
+            $image->save();
+        }
     }
+        return redirect()->route('postagens.index')->withSuccess(__('postagem criada com sucesso.'));
+}
+
+
+    
 
 
     /**

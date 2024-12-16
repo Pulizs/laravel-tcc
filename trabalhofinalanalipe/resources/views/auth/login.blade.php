@@ -1,39 +1,4 @@
 @extends('layouts.app-master') @section('content')
-
-
-<style>
-
-
-.botao-esqc {
-	display: flex;
-    justify-content: flex-start; 
-    gap: 10px;
-    align-items: center;
-}
-
-
-.botao-esqc {
-    color: #b879bd;  
-}
-
-
-.botao {
-    background-color: #b879bd; 
-    color: white; 
-    border: none; 
-    padding: 13px 145px;
-    font-size: 18px;
-    border-radius: 8px; 
-    cursor: pointer; 
-}
-
-
-.botao:hover {
-    background-color: #D0AAD1;
-}
-
-
-</style>
  
 <center>
 	<form method="post" action="{{ route('login.perform') }}">
@@ -46,7 +11,7 @@
     	@include('layouts.partials.messages')
  
     	<div class="form-group form-floating mb-3 w-25 mx-auto">
-        	<input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail" required="required" autofocus>
+        	<input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail" required="required" autofocus>
         	<label for="floatingName">E-mail</label>
         	@if ($errors->has('email'))
             	<span class="text-danger text-left">{{ $errors->first('email') }}</span>
@@ -60,13 +25,13 @@
             	<span class="text-danger text-left">{{ $errors->first('password') }}</span>
         	@endif
 			<button>
-				<a href="{{route('password.request')}}" class="botao-esqc">Esqueci minha senha</a>
+				<a href="{{route('password.request')}}">esqueceu a senha </a>
 			</button>
 			
     	</div>
  
           	<div class="form-group form-floating mb-3 mx-auto">
-        	<button class="botao" type="submit">Login</button>
+        	<button class="btn btn-lg btn-primary w-25 mx-auto" type="submit">Login</button>
         	<br/><br/>
         	<a href="{{ route('register.perform') }}" class="btn btn-lg btn-secondary w-25 mx-auto">Criar Conta</a>
           	</div>

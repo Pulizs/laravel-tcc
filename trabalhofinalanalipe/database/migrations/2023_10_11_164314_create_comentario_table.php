@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('comentario', function (Blueprint $table) {
             $table->id();
-            $table->string("titulo");
             $table->string("conteudo");
             // $table->longblob("imagem");
             $table->string("curtidas");

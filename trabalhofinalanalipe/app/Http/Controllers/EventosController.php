@@ -47,37 +47,23 @@ class EventosController extends Controller
         
         
         $storeData = $request->validate([
-            'data' =>  'required|date',
             'titulo' => 'required|max:255',
             'conteudo' => 'max:255',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'palestrantre' => 'required|max:255',
-            'local' =>'required|string',
+            // 'imagem' => 'max:255',
+            'curtidas' => 'bigInteger',
         ]);
-
-        // $data = Carbon::parse($storeData['data'])->format('Y-m-d');
         
         $evento = new Evento();
-        $evento->data = $data;
         $evento->titulo = $storeData["titulo"];
         $evento->conteudo = $storeData["conteudo"];
-        $evento->palestrante = $storeData["palestrante"];
-        $evento->local = $storeData["local"];
+        // $evento->imagem = $storeData["imagem"];
+        $evento->curtidas = $storeData["curtidas"];
         
-        $postagem->user_id = auth()->user()->id;
+        $user_id = $request["user_id"];
         
-        $imagePaths = [];
-        if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $imageFile) {
-                    $path = $imageFile->store('evento', 'public');
-                    $imagePaths[] = $path;
-                }
-            }
-   
-        $evento->images = json_encode($imagePaths);
-
+        $evento->user_id = $user_id;
+        
         $evento->save();
-        
         return redirect()->route('eventos.index')->withSuccess(__('evento criada com sucesso.'));
     }
 
@@ -130,7 +116,7 @@ class EventosController extends Controller
         $evento = new Evento();
         $evento->titulo = $storeData["titulo"];
         $evento->conteudo = $storeData["conteudo"];
-
+        $evento->imagem = $storeData["imagem"];
         $evento->curtidas = $storeData["curtidas"];
         
         $user_id = $request["user_id"];

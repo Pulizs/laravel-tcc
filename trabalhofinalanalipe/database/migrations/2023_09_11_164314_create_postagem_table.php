@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('postagem', function (Blueprint $table) {
             $table->id();
             $table->string("titulo");
-            $table->json("images")->nullable();
             $table->string("conteudo");
             $table->bigInteger("curtidas")->nullable();
             $table->bigInteger("user_id")->unsigned();

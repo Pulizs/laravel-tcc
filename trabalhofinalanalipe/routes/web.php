@@ -7,7 +7,6 @@ use App\Http\Controllers\DisciplinaPDFController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PostagensController;
-use App\Http\Controllers\LivrosController;
 
 /*
  * |--------------------------------------------------------------------------
@@ -117,8 +116,6 @@ Route::group([
 
         Route::resource('postagens', PostagensController::class);
 
-        Route::resource('livro', LivrosController::class);
-
 
 
        
@@ -143,13 +140,6 @@ Route::group([
 
         Route::get("/eventos", "EventosController@index")->name("eventos.index");
         Route::get("/eventos/create", "EventosController@create")->name("eventos.create");
-        Route::post("/eventos/create", "EventosController@store")->name("eventos.store");
-        Route::get('/eventos/{eventos}/show', 'EventosController@show')->name('eventos.show');
-        Route::get('/eventos/{eventos}/edit', 'EventosController@edit')->name('eventos.edit');
-        Route::patch('/eventos/{eventos}/update', 'EventosController@update')->name('eventos.update');
-        Route::delete('/eventos/{eventos}/delete', 'EventosController@destroy')->name('eventos.destroy');
-
-
 
         Route::get("/telaAdmin", "TelaAdminController@index")->name("telaAdmin.index");
         Route::get('/telaAdmin/{user}/edit', 'TelaAdminController@edit')->name('telaAdmin.edit');
@@ -158,7 +148,7 @@ Route::group([
         Route::delete('/telaAdmin/{user}/delete', 'TelaAdminController@destroy')->name('telaAdmin.destroy');
         
         Route::get("/comentarios", "ComentariosController@index")->name("comentarios.index");
-        Route::get("/comentarios/{postagem}/create", "ComentariosController@create")->name("comentarios.create");
+        Route::get("/comentarios/create", "ComentariosController@create")->name("comentarios.create");
         Route::post("/comentarios/create", "ComentariosController@store")->name("comentarios.store");
       
         /**

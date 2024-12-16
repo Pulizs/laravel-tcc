@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('image', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
-            $table->string("resumo")->nullable;
+            $table->string('path');
+            $table->foreignId('postagem_id')->nullable();
             $table->timestamps();
-          
+
         });
-        
+
     }
 
     /**
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('images');
     }
 };
