@@ -111,7 +111,7 @@
 
 					<div class="card-body">
 					<div class="input-group mb-3">
-								<label class="input-group-text" for="inputGroupFile01">Upload</label>
+								<label class="input-group-text" for="inputGroupFile01">Uplooad</label>
 								<input type="file" class="form-control" id="inputGroupFile01" name="images[]" value="old('imagem',
 								$user->image)"requiredautofocusautocomplete="imagem"/>
 							</div>
