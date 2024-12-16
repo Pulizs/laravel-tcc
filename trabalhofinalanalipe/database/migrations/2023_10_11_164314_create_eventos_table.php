@@ -16,9 +16,22 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
-            $table->string("resumo")->nullable;
+            $table->json("images")->nullable();
+            $table->string("resumo");
+            $table->string("data");
+            $table->string("palestrante");
+            $table->string("local");
+            $table->bigInteger("user_id")->unsigned();
             $table->timestamps();
           
+        });
+
+        Schema::table('eventos', function (Blueprint $table) {
+            $table->foreign("user_id")
+            ->references("id")
+            ->on("users")
+            ->onDelete("cascade");
+            
         });
         
     }

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class ResetPasswordController extends Controller
 {
@@ -30,7 +32,7 @@ class ResetPasswordController extends Controller
                     'password' => Hash::make($password),
                 ])->save();
 
-                $user->tokens()->delete(); // Opcional: invalida tokens ativos
+                
             }
         );
 

@@ -1,46 +1,81 @@
 @extends('layouts.app-master') 
+
 @section('content')
 
-<div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Data</th>
-                    <th scope="col">Evento</th>
-                    <th scope="col">Palestrante</th>
-                    <th scope="col">Local</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">25/05/2024</th>
-                    <td>Feira de Ciências</td>
-                    <td>Otto</td>
-                    <td><a
-                            href="https://www.google.com/maps/dir/-25.5000668,-49.2740054/ifpr+curitiba/@-25.4691351,-49.3030148,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x94dce45db38614eb:0x9adf6f5ffe161bac!2m2!1d-49.2616307!2d-25.4399999?entry=ttu">
-                            IFPR CURITIBA
-                        </a></td>
-                </tr>
-                <tr>
-                    <th scope="row">21/06/2024</th>
-                    <td>Teste</td>
-                    <td>Thornton</td>
-                    <td><a
-                            href="https://www.google.com/maps/dir/-25.5000668,-49.2740054/ifpr+curitiba/@-25.4691351,-49.3030148,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x94dce45db38614eb:0x9adf6f5ffe161bac!2m2!1d-49.2616307!2d-25.4399999?entry=ttu">
-                            IFPR CURITIBA
-                        </a></td>
-                </tr>
-                <tr>
-                    <th scope="row">19/08/2024</th>
-                    <td>Teste</td>
-                    <td>Teste</td>
-                    <td><a
-                            href="https://www.google.com/maps/dir/-25.5000668,-49.2740054/ifpr+curitiba/@-25.4691351,-49.3030148,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x94dce45db38614eb:0x9adf6f5ffe161bac!2m2!1d-49.2616307!2d-25.4399999?entry=ttu">
-                            IFPR CURITIBA
-                        </a></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="bg-light p-5 rounded">
+
+    @if(auth()->user()->role == "admin" || auth()->user()->role == "professor" || auth()->user()->role == "bolsista1" || auth()->user()->role == "bolsista2")
+        <a href="{{ route('eventos.create') }}"><button type="button" class="btn btn-primary">+ Novo Evento</button></a>
+    @endif
+    <br><br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach($eventos as $evento)
+            <div class="col">
+                <div class="card" style="width: 18rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventoModal{{ $evento->id }}">
+                    @foreach(json_decode($evento->images) as $image)
+                        <img class="card-img-top" src="{{ asset($image) }}" alt="Card image cap">
+                    @endforeach
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $evento->titulo }}</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <p>{{ $evento->data }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <p>{{ $evento->palestrante }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <p>{{ $evento->conteudo }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="eventoModal{{ $evento->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $evento->titulo }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    @foreach(json_decode($evento->images) as $image) 
+                                        <img src="{{ asset($image) }}" alt="Evento Image" style="width: 12rem;">
+                                    @endforeach
+                                </div>
+
+                                <div class="col">
+                                    <div class="row">
+                                        <p><strong>Título:</strong> {{ $evento->titulo }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p><strong>Data:</strong> {{ $evento->data }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p><strong>Palestrante:</strong> {{ $evento->palestrante }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p><strong>Conteúdo:</strong> {{ $evento->conteudo }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p><strong>Local:</strong> {{ $evento->local }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 
-    @endsection
+</div>
+
+@endsection

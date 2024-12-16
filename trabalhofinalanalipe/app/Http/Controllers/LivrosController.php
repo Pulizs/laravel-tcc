@@ -49,7 +49,7 @@ class LivrosController extends Controller
         $storeData = $request->validate([
             'titulo' => 'required|max:255',
             'resenha' => 'required|max:255',
-            //'imagem' => 'max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'tipo' => 'max:255',
             'autor' => 'max:255',
             'publicacao' => 'max:255',
@@ -58,7 +58,7 @@ class LivrosController extends Controller
         $livro = new Livro();
         $livro->titulo = $storeData["titulo"];
         $livro->resenha = $storeData["resenha"];
-        // $livro->imagem = $storeData["imagem"];
+
         $livro->tipo = $storeData["tipo"];
         $livro->autor = $storeData["autor"];
         $livro->publicacao = $storeData["publicacao"];
@@ -66,6 +66,17 @@ class LivrosController extends Controller
         $user_id = auth()->user()->id;
         $livro->user_id = $user_id;
         
+
+        $imagePaths = [];
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $imageFile) {
+                    $path = $imageFile->store('capaLivro', 'public');
+                    $imagePaths[] = $path;
+                }
+            }
+   
+        $livro->images = json_encode($imagePaths);
+
         $livro->save();
         return redirect()->route('livros.index')->withSuccess(__('livro criada com sucesso.'));
     }
