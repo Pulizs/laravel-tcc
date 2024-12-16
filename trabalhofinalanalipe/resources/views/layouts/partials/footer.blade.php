@@ -1,3 +1,5 @@
+footer.blade.php
+
 <footer id="footer" class="footer">
     <div class="container p-4">
         <div class="row">

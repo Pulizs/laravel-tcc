@@ -21,7 +21,7 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body" id="offcanvasBody">
+                <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('postagens.index') }}">Postagens</a>
@@ -61,7 +61,6 @@
                         @endauth
                     </ul>
                 </div>
-
             </div>
         </div>
     </nav>
@@ -75,11 +74,12 @@
     }
 
     .navbar {
-        background-color: #D0E9E9 !important;
-        /* Cor fixa */
+        background-color: #D0E9E9 !important; /* Cor fixa */
     }
 
-
+    .offcanvas.light-mode {
+        background-color: #D0AAD1;
+    }
 
     footer.light-mode {
         background-color: #D0AAD1;
@@ -91,33 +91,12 @@
         color: #ffffff;
     }
 
-    .offcanvas.light-mode {
-        background-color: #D0AAD1;
-        color: #000000;
-    }
-
-    .offcanvas-body.light-mode {
-        background-color: #D0AAD1;
-        /* Cor para o body do menu em modo claro */
-        color: #000000;
-    }
-
     .offcanvas.dark-mode {
-        background-color: #5A8F99 !important;
-        /* Fundo escuro do menu */
-        color: #ffffff !important;
+        background-color: #444444;
     }
-
-    .offcanvas-body.dark-mode {
-        background-color: #5A8F99;
-        /* Cor para o body do menu em modo escuro */
-        color: #ffffff;
-    }
-
 
     footer.dark-mode {
-        background-color: #2F2F2F;
-        /* Cinza escuro */
+        background-color: #2F2F2F; /* Cinza escuro */
     }
 
     /* Estilo do botão de alternância */
@@ -136,42 +115,26 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const footer = document.querySelector('#footer'); // Selecionando o footer corretamente
-        const offcanvas = document.getElementById('offcanvasNavbar'); // Selecionando o menu offcanvas
-        const offcanvasBody = document.getElementById('offcanvasBody'); // Selecionando o offcanvas-body
 
-        // Define o tema padrão como 'light-mode' no primeiro acesso
-        let savedTheme = localStorage.getItem('theme');
-        if (!savedTheme) {
-            savedTheme = 'light-mode'; // Define o modo claro como padrão
-            localStorage.setItem('theme', savedTheme); // Salva no localStorage
-        }
-
-        // Aplica o tema salvo
+        // Verifica se existe um tema salvo no localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light-mode';
         body.classList.add(savedTheme);
-        footer?.classList.add(savedTheme);
-        offcanvas?.classList.add(savedTheme);
-        offcanvasBody?.classList.add(savedTheme);
+        footer.classList.add(savedTheme);
 
-        // Atualizar o botão de alternância
-        if (themeToggle) {
-            themeToggle.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
-        }
+        // Atualizar o texto do botão
+        themeToggle.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
 
         // Alternar tema ao clicar no botão
-        themeToggle?.addEventListener('click', () => {
+        themeToggle.addEventListener('click', () => {
             const isDarkMode = body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode', !isDarkMode);
-            footer?.classList.toggle('dark-mode', isDarkMode);
-            footer?.classList.toggle('light-mode', !isDarkMode);
-            offcanvas?.classList.toggle('dark-mode', isDarkMode);
-            offcanvas?.classList.toggle('light-mode', !isDarkMode);
-            offcanvasBody?.classList.toggle('dark-mode', isDarkMode);
-            offcanvasBody?.classList.toggle('light-mode', !isDarkMode);
+            footer.classList.toggle('dark-mode', isDarkMode);
+            footer.classList.toggle('light-mode', !isDarkMode);
 
             // Atualizar o texto do botão
             themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
 
-            // Salvar o estado no localStorage
+            // Salvar o estado no localStorage para persistência
             localStorage.setItem('theme', isDarkMode ? 'dark-mode' : 'light-mode');
         });
     });
