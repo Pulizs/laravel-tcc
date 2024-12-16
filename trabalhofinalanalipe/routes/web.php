@@ -7,6 +7,7 @@ use App\Http\Controllers\DisciplinaPDFController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PostagensController;
+use App\Http\Controllers\LivrosController;
 
 /*
  * |--------------------------------------------------------------------------
