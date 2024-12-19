@@ -70,7 +70,7 @@ Route::group([
         Route::get("/usuarios", "UsuariosController@index")->name("usuarios.index");
         Route::get("/usuarios/create", "UsuariosController@create")->name("usuarios.create");
         Route::post("/usuarios/create", "UsuariosController@store")->name("usuarios.store");
-        Route::get('/usuarios/{usuario}/show', 'UsuariosController@show')->name('usuarios.show');
+        Route::get('/usuarios/{usuario}/show', 'UsuariosController@show')->name('usuarios.show')->middleware('admin');
         Route::get('/usuarios/{usuario}/edit', 'UsuariosController@edit')->name('usuarios.edit');
         Route::patch('/usuarios/{usuario}/update', 'UsuariosController@update')->name('usuarios.update');
         Route::delete('/usuarios/{usuario}/delete', 'UsuariosController@destroy')->name('usuarios.destroy');
