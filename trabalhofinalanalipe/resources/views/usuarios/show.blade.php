@@ -107,9 +107,12 @@
                     <p class="card-text">{{ $postagen->conteudo }}</p>
                 </div>
                 <div class="card-body">
-                    @foreach(json_decode($postagen->images) as $image)
-                        <img src="{{ asset($image) }}" alt="Imagem do post" width="250px"/>
-                    @endforeach
+				@if(auth()->user()->profile_photo)
+					<img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="Foto de Perfil" width="150">
+				@else
+					<p>Sem foto de perfil</p>
+				@endif
+
                 </div>
             </div>
         @endforeach

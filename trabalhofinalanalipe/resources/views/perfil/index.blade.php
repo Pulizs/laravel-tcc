@@ -6,13 +6,11 @@
         <div class="container">
     <div class="row">
         <div class="col">
-            @if($user->images) <!-- Verifique se existem imagens antes de tentar iterar -->
-                @foreach(json_decode($user->images) as $image)
-                    <img src="{{ asset($image) }}" alt="Imagem do post" width="250px"/>
-                @endforeach
-            @else
-                <p>Sem imagens de perfil disponíveis.</p>
-            @endif
+        @if(auth()->user()->profile_photo)
+    <img src="{{ asset('storage/' . auth()->user()->images) }}" alt="Foto de Perfil" width="150">
+@else
+    <p>Sem foto de perfil</p>
+@endif
         </div>
             <div class="col">
                 <h4>{{ $user->nome }}</h4>

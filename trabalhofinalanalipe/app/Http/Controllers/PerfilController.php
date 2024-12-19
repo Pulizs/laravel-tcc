@@ -17,10 +17,12 @@ class PerfilController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $postagens = Postagens::class;
         $perfil = Perfil::orderBy("id")->paginate(10);
         return view("perfil.index")
         ->with('user', $user)
-        ->with('perfil', $perfil);
+        ->with('perfil', $perfil)
+        ->with('postagens', $postagens);
         
       
     }
@@ -59,7 +61,7 @@ class PerfilController extends Controller
         // $perfil->imagem = $storeData["imagem"];
         // $perfil->curtidas = $storeData["curtidas"];
         
-        $user_id = $request["user_id"];
+        $perfil->user_id = auth()->user()->id;
         $perfil->save();
         return redirect()->route('perfil.index')->withSuccess(__('perfil criada com sucesso.'));
     }
